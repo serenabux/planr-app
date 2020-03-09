@@ -2,7 +2,10 @@ from flask import (
     Blueprint, render_template
 )
 
-import 
+import sys
+
+sys.path.append('../../')
+import new_user
 
 bp = Blueprint('main', __name__)
 
@@ -16,9 +19,9 @@ def sign_up():
     return render_template('main/sign_up.html', title='Sign Up')
 
 @app.route('/new_user', methods=['POST'])
-    def new_user():
-        data = request.form
-        print(data)
+def new_user():
+    data = request.form
+    print(data)
 
 
 @bp.route('/sign_in')

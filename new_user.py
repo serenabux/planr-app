@@ -1,4 +1,3 @@
-import JSON
 from passlib.context import CryptContext
 import psycopg2
 import sys
