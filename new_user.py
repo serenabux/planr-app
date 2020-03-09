@@ -3,15 +3,13 @@ from passlib.context import CryptContext
 import psycopg2
 import sys
 
- 
 
-def new_user():
-	user = { "Firstname": "Denver", "Lastname": "Chernin","Email": "TEst4@test.com","Password": "testpass"}
+def create_user(user):
 
 	#Non-encrypting information
-	email = user["Email"].lower()
-	first_name = user["Firstname"].lower()
-	last_name = user["Lastname"].lower()
+	email = user["email"].lower()
+	first_name = user["firstname"].lower()
+	last_name = user["lastname"].lower()
 
 
 	try:
@@ -32,7 +30,7 @@ def new_user():
 		pwd_context = CryptContext(schemes=["pbkdf2_sha256"],
 									default = "pbkdf2_sha256",
 									pbkdf2_sha256__default_rounds=30000)
-		hashed_pw = pwd_context.encrypt(user["Password"])
+		hashed_pw = pwd_context.encrypt(user["password"])
 		print(hashed_pw)
 		query_insert = "insert into users (email, first_name, last_name, date_created, password) VALUES ('{}', '{}', '{}', CURRENT_DATE,'{}')".format(email, first_name, last_name, hashed_pw)	
 	
@@ -49,8 +47,3 @@ def new_user():
 			conn.close()
 			print("connection closed")
 
-def main():
-	new_user()
-
-if __name__ == '__main__':
-	main()
