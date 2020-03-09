@@ -5,7 +5,7 @@ import sys
 
 
 def create_user(user):
-
+	print(user)
 	#Non-encrypting information
 	email = user["email"].lower()
 	first_name = user["firstname"].lower()
