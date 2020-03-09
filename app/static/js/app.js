@@ -23,22 +23,22 @@ window.addEventListener('beforeinstallprompt', (e) => {
   console.log('beforeinstallprompt event fired');
   e.preventDefault();
   deferredPrompt = e;
-  btnAdd.style.visibility = 'visible';
+  // btnAdd.style.visibility = 'visible';
 });
 
-btnAdd.addEventListener('click', (e) => {
-  btnAdd.style.visibility = 'hidden';
-  deferredPrompt.prompt();
-  deferredPrompt.userChoice
-    .then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the A2HS prompt');
-      } else {
-        console.log('User dismissed the A2HS prompt');
-      }
-      deferredPrompt = null;
-    });
-});
+// btnAdd.addEventListener('click', (e) => {
+//   btnAdd.style.visibility = 'hidden';
+//   deferredPrompt.prompt();
+//   deferredPrompt.userChoice
+//     .then((choiceResult) => {
+//       if (choiceResult.outcome === 'accepted') {
+//         console.log('User accepted the A2HS prompt');
+//       } else {
+//         console.log('User dismissed the A2HS prompt');
+//       }
+//       deferredPrompt = null;
+//     });
+// });
 
 window.addEventListener('appinstalled', (evt) => {
   app.logEvent('app', 'installed');

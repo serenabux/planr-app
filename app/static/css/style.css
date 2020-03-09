@@ -16,17 +16,16 @@
 body > * {
   flex-shrink: 0;
   width: 100%;
-  display: flex;
 }
 
-
+/* 
 body > main {
   background-color: var(--divider-color);
   flex: 1 0 auto;
   flex-wrap: wrap;
   width: 100%;
   padding: 15px 15px;
-}
+} */
 
 body > footer {
   background-color: var(--dark-primary-color);
@@ -63,14 +62,10 @@ header {
 }
 
 @media screen and (min-width: 800px) {
-  main {
+  article > main {
     max-width: 800px;
     margin: 20px auto;
     border-radius: 10px;
-  }
-  img {
-    max-width: 100%;
-    height: 200px;
   }
 }
 
@@ -130,19 +125,25 @@ header {
 }
 
 #landingHeader_container{
-  height: 100px;
+  height: 80px;
 }
 
 @media (max-width: 768px){
-.landingHeading_logo{
-  margin-left: 30px;
-  height: 40px;
-}
-.landingHeading_li{
+  .landingHeading_logo{
+    margin-left: 30px;
+    height: 40px;
+  }
+  .landingHeading_li{
       display: none;
   }
   .landingHeading_ul{
       display: none;
+  }
+  .landingHeader_container{
+    height: 50px;
+  }
+  .toggle_button{
+    display: none;
   }
 
 }
@@ -163,7 +164,7 @@ header {
 }
 
 @media (min-width: 769px){
-  .toggle_button{
+    .toggle_button{
       display: none;
   }
 }
@@ -212,7 +213,7 @@ header {
   margin: 0.5rem 0;
 }
 
-.side_drawer.open{
+.open{
   transform: translateX(0px);
   transition: transform 0.5s ease-out;
 
@@ -235,4 +236,181 @@ header {
   .side_drawer{
       display: none;
   }
+}
+
+
+/* Index Page Styles */
+.hero_container{
+  width: 50%;
+  margin-left: 45%;
+  max-width: 500px;
+overflow: hidden;
+}
+
+.hero_heading{
+  margin-top: 175px;
+}
+
+.hero_image{
+  height: 380px;
+  width: 100%;
+background: url("../images/adventure.jpg") no-repeat center center;
+background-size: 100%;
+  text-align: center;
+}
+
+@media (max-width: 520px){
+  .hero_container{
+      margin: auto;
+      width: 80%;
+      max-width: 1000;
+  }
+
+.hero_image{
+      background:#ffffff;
+      height: 125px;
+  }
+
+  .hero_heading{
+      text-align: center;
+      margin-top: 80px;
+  }
+
+}
+
+
+.description{
+  margin-top: 60px;
+}
+
+.feature_image{
+  width: 200px;
+  margin-top: 20px;
+  z-index: -1;
+}
+
+.feature_container{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.feature_container2{
+  display: flex;
+  flex-flow: row-reverse;
+  align-items: center;
+}
+
+.feature_left{
+margin-left: 100px;
+}
+
+.feature_right{
+margin-right: 100px;
+}
+
+@media (max-width: 768px){
+.feature_left{
+      margin-left: 0px;
+  }
+  .feature_right{
+      margin-right: 50px;
+  }
+
+}
+
+@media (max-width: 768px){
+.feature_container{
+      display: block;
+      text-align: center;
+  }
+  .feature_container2{
+      display: block;
+      text-align: center;
+  }
+  .feature_right{
+      margin-right: 0px;
+  }
+  .feature_image{
+      text-align: center;
+      margin-left: auto;
+      margin-right:auto;
+  }
+
+}
+
+
+/*Sign Up*/
+
+.inline_container{
+  display: inline;
+}
+
+#sign_up_container{
+  display: inline;
+  width: 50%;
+}
+
+.sign_up_container{
+  display: flex;
+  display: inline;
+  width: 50%;
+}
+
+.form_field{
+  border: 2px solid #C4C4C4;
+  border-radius: 8px;
+  display: block;
+  padding: 5px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.sign_up_label{
+  display: block;
+  margin-bottom: 12;
+}
+
+
+.sign_up_button{
+  background: #39b8ea;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: Helvetica, Sans-Serif;
+font-size: 1em;
+  font-weight: bold;
+  width: 100%;
+}
+
+.smallText{
+  margin-top: 12px;
+  font-size: 12px;
+  text-align: center;
+}
+
+
+.signInContainer{
+  margin: 24px auto;
+  width: 40%;
+}
+
+.password_field{
+  border: 2px solid red;
+}
+
+.sign_up_error{
+  font-size: 12px;
+  color: red;
+}
+.sign_up_image{
+  width: 40%; 
+  margin-top: 5%;
+  display: inline;
+}
+
+@media (max-width: 768px){
+	.sign_up_image{
+        display: none;
+    }
+
 }

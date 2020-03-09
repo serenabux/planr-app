@@ -49,8 +49,8 @@ class LandingHeader extends React.Component {
                     {/* <li className="landingHeading_li"><a className="navLinks} href="#boxes">Features</a></li>
                     <li className="landingHeading_li"><a className="navLinks}href="#about">About</a></li>
                     <li className="landingHeading_li"><a className="navLinks} href="#">Pricing</a></li> */}
-                    <li className="landingHeading_li"><a href ="#" className="navLinks">Sign In</a></li>
-                    <li className="landingHeading_li"><a href="#" className="navLinks buttonLook">Sign Up Free</a></li>
+                    <li className="landingHeading_li"><a href="sign_in" className="navLinks">Sign In</a></li>
+                    <li className="landingHeading_li"><a href="sign_up" className="navLinks buttonLook">Sign Up Free</a></li>
                 </ul>
             </div>
         </nav>
