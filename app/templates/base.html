@@ -27,6 +27,14 @@
   {% block body %}{% endblock %}
 
   <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!--React components -->
+    <script type="text/jsx" src="js/components/landingHeading.js"></script>
+<script type="text/jsx" src="js/components/sign_up.js"></script>
+<script type="text/jsx" src="js/components/sign_in.js"></script>
 </body>
 
 </html>

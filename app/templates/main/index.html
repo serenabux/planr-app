@@ -1,16 +1,42 @@
 {% extends "layout.html" %}
 {% block main %}
+<section class="hero_image">
+  <div class="hero_container">
+    <h1 class="hero_heading">Collaborative Trip Planning Made Easy</h1>
+  </div>
+</section>
 <article>
-  <header>
-    <img src="{{ url_for('static', filename='images/flasks.jpg') }}" alt="">
-  </header>
   <main>
-    <h2>Flask PWA</h2>
-    <span>A progressive webapp template</span>
-    <p>Flask PWA is supposed to be a goto template when
-      I start a new Flask project. It is constructed on
-      a Model-Template-Controller perspective, which I
-      find clear enough for my current projects.</p>
+    <div class = "feature_container">
+      <div class = "column feature_right">
+          <img class="feature_image" src="./images/mainPhone.png">
+      </div>
+      <div class="column feature_left feature_description">
+          <h2>Attractions</h2>
+          <p>Enter your trip information with the location and dates. Add your friends and family to the trip so that they can collaborate 
+          with you!</p>
+      </div>
+    </div>
+    <div class = "feature_container2">
+      <div class = "column feature_left">
+          <img class="feature_image" src="./images/explorePhone.png">
+      </div>
+      <div class="column feature_right feature_description">
+          <h2>Create a Trip</h2>
+          <p>Quickly and easily discover attractions at 
+            your destination. Learn about new places and get the information you need.</p>
+      </div>
+    </div>
+    <div class = "feature_container">
+      <div class = "column feature_right">
+          <img class="feature_image" src="./images/votePhone.png">
+      </div>
+      <div class="column feature_left feature_description">
+          <h2>Voting</h2>
+          <p>Propose a vote for your chosen attractions. 
+            If a majority of people vote in favor of the attraction it will be added to the plan.</p>
+      </div>
+    </div>
   </main>
   <footer>
     <button id="btnAdd">Install App</button>
