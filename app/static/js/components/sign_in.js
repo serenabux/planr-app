@@ -30,13 +30,13 @@ class SignIn extends React.Component {
 
     render(){
         return(
-                    <div className = "sign_in_container">
-                        <h2>Welcome Back!</h2>
+                    <div className = "sign_up_container">
+                        <h2 className="sign_up_header">Welcome Back!</h2>
                         <form onSubmit={this.handleSubmit}>
-                            <label className = "label">Email
+                            <label className = "sign_up_label">Email
                                 <input className = "form_field"type='text' name='email' value = {this.state.email} onChange = {this.handleChange} required/>
                             </label>
-                            <label className = "label">Password
+                            <label className = "sign_up_label">Password
                             <input className = "form_field" type='password' name='password' value = {this.state.password} onChange = {this.handleChange} required/>
                             </label>
                             <p className = "sign_up_error">{this.state.formError}</p>

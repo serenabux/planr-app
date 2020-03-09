@@ -37,8 +37,8 @@ body > footer {
 
 
 article > main {
-  margin-top: 7%;
-  padding: 30px 30px;
+  margin: 24px auto;
+  max-width: 80%;
 }
 
 
@@ -63,9 +63,8 @@ header {
 
 @media screen and (min-width: 800px) {
   article > main {
-    max-width: 800px;
-    margin: 20px auto;
-    border-radius: 10px;
+    max-width: 80%;
+    margin: 24px auto;
   }
 }
 
@@ -342,19 +341,14 @@ margin-right: 100px;
 
 /*Sign Up*/
 
-.inline_container{
-  display: inline;
-}
-
-#sign_up_container{
-  display: inline;
-  width: 50%;
+.flex_container{
+  display: flex;
 }
 
 .sign_up_container{
-  display: flex;
-  display: inline;
-  width: 50%;
+  margin-left: 108px;
+  margin-top: 15%;
+  vertical-align: middle;
 }
 
 .form_field{
@@ -388,10 +382,14 @@ font-size: 1em;
   text-align: center;
 }
 
+#sign_up_container{
+  width: 50%;
+}
 
-.signInContainer{
+#sign_in_container{
   margin: 24px auto;
-  width: 40%;
+  width: 50%;
+  vertical-align: middle;
 }
 
 .password_field{
@@ -404,13 +402,31 @@ font-size: 1em;
 }
 .sign_up_image{
   width: 40%; 
+  height: 40%;
   margin-top: 5%;
-  display: inline;
+  vertical-align: middle;
 }
+
+.sign_up_header{
+  margin-bottom: 24px;
+}
+
 
 @media (max-width: 768px){
 	.sign_up_image{
         display: none;
     }
+  .sign_up_container{
+    margin-left: 0px;
+    width: 100%;
+  }
+
+  #sign_up_container{
+    width: 100%;
+  }
+
+  #sign_in_container{
+    width: 100%;
+  }
 
 }
