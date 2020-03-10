@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template, request
+    Blueprint, render_template, request, flash
 )
 
 import sys
@@ -36,6 +36,7 @@ def sign_in_user():
     password = request.form['password']
     ret = sign_in.new_user(email, password)
     if(ret == -1):
+        flash("Invalid email or password. Please try again.")
         return render_template('main/sign_in.html', title='Sign In')
     else:
        return render_template('main/index.html', title='Flask-PWA')
