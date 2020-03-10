@@ -9,7 +9,9 @@ def create_user(email, first_name, last_name, password1, password2):
 	# email = user["email"].lower()
 	# first_name = user["firstname"].lower()
 	# last_name = user["lastname"].lower()
-
+	email = email.lower()
+	first_name = first_name.lower()
+	last_name = last_name.lower()
 
 	try:
 		conn = psycopg2.connect(host = "ec2-54-197-48-79.compute-1.amazonaws.com", 
