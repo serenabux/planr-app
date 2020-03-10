@@ -347,8 +347,9 @@ margin-right: 100px;
 
 .sign_up_container{
   margin-left: 108px;
-  margin-top: 15%;
+  margin-top: 10%;
   vertical-align: middle;
+  width: 40%;
 }
 
 .form_field{
@@ -382,9 +383,6 @@ font-size: 1em;
   text-align: center;
 }
 
-#sign_up_container{
-  width: 50%;
-}
 
 #sign_in_container{
   margin: 24px auto;

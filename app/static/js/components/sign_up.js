@@ -37,33 +37,28 @@ class SignUp extends React.Component {
       
 
     render(){
-
-        var passwordclassNames = "form_field";
-        if(this.state.formError == 'passwords do not match'){
-            passwordclassNames = "form_field password_field";
-        }
         return(
-            <div className =  "sign_up_container">
-                <h2 className= "sign_up_header">Let the Adventures Begin!</h2>
+            <div class =  "sign_up_container">
+                <h2 class= "sign_up_header">Let the Adventures Begin!</h2>
                 <form method="post" action="/sign_up_user">
-                    <label className = "sign_up_label">First Name
-                        <input className = "form_field" type='text' name='firstname' value = {this.state.firstname} onChange = {this.handleChange} required/>
+                    <label class = "sign_up_label">First Name
+                        <input class = "form_field" type='text' name='firstname' value = {this.state.firstname} onChange = {this.handleChange} required/>
                     </label> 
-                    <label className = "sign_up_label">Last Name
-                        <input className = "form_field" type='text' name='lastname' value = {this.state.lastname} onChange = {this.handleChange} required/>
+                    <label class = "sign_up_label">Last Name
+                        <input class = "form_field" type='text' name='lastname' value = {this.state.lastname} onChange = {this.handleChange} required/>
                     </label>
-                    <label className = "sign_up_label">Email
-                        <input className = "form_field" type='text' name='email' value = {this.state.email} onChange = {this.handleChange} required/>
+                    <label class = "sign_up_label">Email
+                        <input class = "form_field" type='text' name='email' value = {this.state.email} onChange = {this.handleChange} required/>
                     </label>
-                    <label className = "sign_up_label">Password
-                    <input className = {passwordclassNames} type='password' name='password' value = {this.state.password} onChange = {this.handleChange} required/>
+                    <label class = "sign_up_label">Password
+                    <input class = {passwordclasss} type='password' name='password' value = {this.state.password} onChange = {this.handleChange} required/>
                     </label>
-                    <label className = "sign_up_label">Re-enter Password
-                    <input className = {passwordclassNames} type='password' name='reenter' value = {this.state.reenter} onChange = {this.handleChange} required/>
+                    <label class = "sign_up_label">Re-enter Password
+                    <input class = {passwordclasss} type='password' name='reenter' value = {this.state.reenter} onChange = {this.handleChange} required/>
                     </label>
-                    <p className = "sign_up_error">{this.state.formError}</p>
-                    <button className = "sign_up_button" type="submit" >Create Account</button>
-                    <p className = "smallText">Already have an account? <a href="sign_in">Sign In</a></p>
+                    <p class = "sign_up_error"></p>
+                    <button class = "sign_up_button" type="submit" >Create Account</button>
+                    <p class = "smallText">Already have an account? <a href="sign_in">Sign In</a></p>
                 </form>
             </div>
         )

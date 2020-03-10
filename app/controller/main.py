@@ -25,6 +25,13 @@ def sign_up_user():
     print(data)
     return "<h1> HI </h1>"
 
+@bp.route('/sign_in_user', methods=['POST'])
+def sign_in_user():
+    print("HELLo")
+    data = request.form
+    print(data)
+    return "<h1> Hi2 </h1>"
+
 
 @bp.route('/sign_in')
 def test():
