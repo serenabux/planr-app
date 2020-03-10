@@ -27,8 +27,14 @@ def sign_up_user():
     password1 = request.form['password1']
     password2 = request.form['password2']
     ret = new_user.create_user(email, firstname, lastname, password1, password2)
-    print(ret)
-    return render_template('main/sign_in.html', title='Sign In')
+    if(ret == -2):
+        flash("User already exists.")
+        return render_template('main/sign_in.html', title='Sign In')
+    elif(ret == -4):
+        flash("Passwords do not match")
+        return render_template('main/sign_up.html', title='Sign Up')
+    else:
+        return render_template('main/sign_in.html', title='Sign In')
 
 @bp.route('/sign_in_user', methods=['POST'])
 def sign_in_user():

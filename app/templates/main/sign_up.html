@@ -8,6 +8,15 @@
             <div class =  "sign_up_container">
                 <h2 class= "sign_up_header">Let the Adventures Begin!</h2>
                 <form method="post" action="/sign_up_user">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <p class=flashes>
+                        {% for message in messages %}
+                        <i>{{ message }}</i>
+                        {% endfor %}
+                        </p>
+                    {% endif %}
+                    {% endwith %}
                     <label class = "sign_up_label">First Name
                         <input class = "form_field" type='text' name='firstname' required/>
                     </label> 
