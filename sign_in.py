@@ -5,11 +5,11 @@ import sys
 
  
 
-def new_user():
-	user = {"Email": "TEst5@test.com","Password": "testpass"}
+def new_user(email, password):
+
 
 	#Non-encrypting information
-	email = user["Email"].lower()
+	email = email.lower()
 
 
 	try:
@@ -24,8 +24,7 @@ def new_user():
 		cursor.execute(query_valid)
 		num = cursor.fetchone()[0]
 		if(num != 1):
-			print("NO USER EXISTS - EMAIL DOESN'T EXIST")
-			return -2
+			return -1
 
 		query_get_pass = "select password from users where email = \'" + email + "\'"
 		cursor.execute(query_get_pass)
@@ -34,10 +33,10 @@ def new_user():
 		pwd_context = CryptContext(schemes=["pbkdf2_sha256"],
 									default = "pbkdf2_sha256",
 									pbkdf2_sha256__default_rounds=30000)
-		if(pwd_context.verify(user["Password"].encode("utf8"), hashed_pw)):
-			print("CORRECT PASSWORD")
+		if(pwd_context.verify(password.encode("utf8"), hashed_pw)):
+			return 0
 		else:
-			print("INCORRECT PASSWORD")
+			return -1
 
 	except (Exception, psycopg2.Error) as error:
 		print(error)

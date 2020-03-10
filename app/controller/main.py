@@ -6,6 +6,7 @@ import sys
 
 sys.path.append('../../')
 import new_user
+import sign_in 
 import sys
 bp = Blueprint('main', __name__)
 
@@ -33,8 +34,11 @@ def sign_up_user():
 def sign_in_user():
     email = request.form['email']
     password = request.form['password']
-    return "<h1>"+ email+ "</h1><h2>password</h2>"
-
+    ret = sign_in.new_user(email, password)
+    if(ret == -1):
+        return render_template('main/sign_in.html', title='Sign In')
+    else:
+       return render_template('main/index.html', title='Flask-PWA')
 
 @bp.route('/sign_in')
 def test():
