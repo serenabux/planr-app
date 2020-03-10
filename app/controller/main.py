@@ -20,17 +20,19 @@ def sign_up():
 
 @bp.route('/sign_up_user', methods=['POST'])
 def sign_up_user():
-    print("HELLo")
-    data = request.form
-    print(data)
-    return "<h1> HI </h1>"
+    firstname = request.form['firstname']
+    lastname = request.form['lastname']
+    email = request.form['email']
+    password1 = request.form['password1']
+    password2 = request.form['password2']
+    return "<h1>" + firstname + " " + lastname +"</h1><h2>" + email + "</h2><h2>" + password1 + "</h2><h2>" + password2+ "</h2>"
 
 @bp.route('/sign_in_user', methods=['POST'])
 def sign_in_user():
     print("HELLo")
-    data = request.form
+    email = request.form['email']
     print(data)
-    return "<h1> Hi2 </h1>"
+    return "<h1>"+ email+ "</h1>"
 
 
 @bp.route('/sign_in')
