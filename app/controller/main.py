@@ -1,14 +1,23 @@
 from flask import (
-    Blueprint, render_template, request, flash
+    Blueprint, render_template, request, flash, Flask
 )
 
-import sys
+import flask_login
 
+#Imports of external python scrips
+#sys used to create direct path using
+#build tree
+import sys
 sys.path.append('../../')
 import new_user
 import sign_in 
-import sys
+
+
+app = Flask(__name__)
+app.secret_key = 'ourteamrocks'
+login_manager = flask_login.LoginManager(app)
 bp = Blueprint('main', __name__)
+
 
 
 @bp.route('/')
