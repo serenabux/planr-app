@@ -1,12 +1,12 @@
 from flask import (
-    Blueprint, render_template
+    Blueprint, render_template, request
 )
 
 import sys
 
 sys.path.append('../../')
 import new_user
-
+import sys
 bp = Blueprint('main', __name__)
 
 
@@ -18,10 +18,12 @@ def index():
 def sign_up():
     return render_template('main/sign_up.html', title='Sign Up')
 
-@app.route('/new_user', methods=['POST'])
-def new_user():
+@bp.route('/sign_up_user', methods=['POST'])
+def sign_up_user():
+    print("HELLo")
     data = request.form
     print(data)
+    return "<h1> HI </h1>"
 
 
 @bp.route('/sign_in')

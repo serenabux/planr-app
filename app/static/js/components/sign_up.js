@@ -45,7 +45,7 @@ class SignUp extends React.Component {
         return(
             <div className =  "sign_up_container">
                 <h2 className= "sign_up_header">Let the Adventures Begin!</h2>
-                <form method="post" action="/user" onSubmit={this.handleSubmit}>
+                <form method="post" action="/sign_up_user">
                     <label className = "sign_up_label">First Name
                         <input className = "form_field" type='text' name='firstname' value = {this.state.firstname} onChange = {this.handleChange} required/>
                     </label> 

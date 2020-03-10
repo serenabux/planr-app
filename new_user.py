@@ -34,6 +34,7 @@ def create_user(user):
 		query_insert = "insert into users (email, first_name, last_name, date_created, password) VALUES ('{}', '{}', '{}', CURRENT_DATE,'{}')".format(email, first_name, last_name, hashed_pw)	
 	
 		cursor.execute(query_insert)
+		return 0
 
 	except (Exception, psycopg2.Error) as error:
 		print(error)
