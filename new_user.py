@@ -3,12 +3,12 @@ import psycopg2
 import sys
 
 
-def create_user(user):
-	print(user)
+def create_user(email, first_name, last_name, password1, password2):
+	# print(user)
 	#Non-encrypting information
-	email = user["email"].lower()
-	first_name = user["firstname"].lower()
-	last_name = user["lastname"].lower()
+	# email = user["email"].lower()
+	# first_name = user["firstname"].lower()
+	# last_name = user["lastname"].lower()
 
 
 	try:
@@ -25,15 +25,17 @@ def create_user(user):
 		if(num > 0):
 			#USER EXISTS ERROR CODE
 			return -2
-			
-		pwd_context = CryptContext(schemes=["pbkdf2_sha256"],
-									default = "pbkdf2_sha256",
-									pbkdf2_sha256__default_rounds=30000)
-		hashed_pw = pwd_context.encrypt(user["password"])
-		print(hashed_pw)
-		query_insert = "insert into users (email, first_name, last_name, date_created, password) VALUES ('{}', '{}', '{}', CURRENT_DATE,'{}')".format(email, first_name, last_name, hashed_pw)	
-	
-		cursor.execute(query_insert)
+		if(password1 == password2):
+			pwd_context = CryptContext(schemes=["pbkdf2_sha256"],
+										default = "pbkdf2_sha256",
+										pbkdf2_sha256__default_rounds=30000)
+			hashed_pw = pwd_context.encrypt(password2)
+			print(hashed_pw)
+			query_insert = "insert into users (email, first_name, last_name, date_created, password) VALUES ('{}', '{}', '{}', CURRENT_DATE,'{}')".format(email, first_name, last_name, hashed_pw)	
+		
+			cursor.execute(query_insert)
+		else:
+			return -4
 		return 0
 
 	except (Exception, psycopg2.Error) as error:
