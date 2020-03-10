@@ -1,8 +1,7 @@
 from flask import (
-    Blueprint, render_template, request, flash, Flask
+    Blueprint, render_template, request, flash,
 )
-
-import flask_login
+import flask
 
 #Imports of external python scrips
 #sys used to create direct path using
@@ -12,10 +11,6 @@ sys.path.append('../../')
 import new_user
 import sign_in 
 
-
-app = Flask(__name__)
-app.secret_key = 'ourteamrocks'
-login_manager = flask_login.LoginManager(app)
 bp = Blueprint('main', __name__)
 
 
