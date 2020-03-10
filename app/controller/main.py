@@ -31,10 +31,9 @@ def sign_up_user():
 
 @bp.route('/sign_in_user', methods=['POST'])
 def sign_in_user():
-    print("HELLo")
     email = request.form['email']
-    print(data)
-    return "<h1>"+ email+ "</h1>"
+    password = request.form['password']
+    return "<h1>"+ email+ "</h1><h2>password</h2>"
 
 
 @bp.route('/sign_in')
