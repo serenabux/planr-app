@@ -9,6 +9,12 @@
 <body>
   <h1 class="centered">My Adventures</h1>
   <h2>Welcome {{ user }}!</h2>
+  <p>
+    {% for trip in t %}
+        <i>{{ trip }}</i>
+        <br></br>
+    {% endfor %}
+  </p>
 </body>
 
 

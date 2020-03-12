@@ -51,7 +51,8 @@ def sign_in_user():
         return render_template('main/sign_in.html', title='Sign In')
     else:
         name = user_pull.get_name(email)
-        return render_template('main/main_dashboard.html', title='Dashboard', user = name)
+        trips = user_pull.get_trips(email)
+        return render_template('main/main_dashboard.html', title='Dashboard', user = name, t = trips)
     
 @bp.route('/sign_in')
 def test():

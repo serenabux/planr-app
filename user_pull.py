@@ -15,3 +15,9 @@ def get_name(em):
     cursor.execute(q)
     name = cursor.fetchone()[0].capitalize()
     return name
+
+def get_trips(em):
+   q = "select * from trips where user_id = (select user_id from users where email = '{}') or members like '%{}%'".format(em, em)
+   cursor.execute(q)
+   trips = cursor.fetchall()
+   return trips
