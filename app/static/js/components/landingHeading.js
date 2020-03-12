@@ -41,7 +41,7 @@ class LandingHeader extends React.Component {
                 <div className="toggle_button_line"></div>
             </button>
             <div>
-                <img className="landingHeading_logo"src="../../images/logoWhite.png"/>
+                <a href="/"><img className="landingHeading_logo"src="../../images/logoWhite.png"/></a>
             </div>
             <div className="spacer"></div>
             <div>
@@ -63,8 +63,8 @@ class LandingHeader extends React.Component {
             {/* <li className="side_drawer_list"><a className="side_drawer_navLink" href="#boxes">Features</a></li>
             <li className="side_drawer_list"><a className="side_drawer_navLink" href="#about">About</a></li>
             <li className="side_drawer_list"><a className="side_drawer_navLink" href="#">Pricing</a></li> */}
-            <li className="side_drawer_list"><a className="side_drawer_navLink" href="#">Sign In</a></li>
-            <li className="side_drawer_list"><a className="side_drawer_navLink" href="#"><div >Sign Up</div></a></li>
+            <li className="side_drawer_list"><a className="side_drawer_navLink" href="sign_in">Sign In</a></li>
+            <li className="side_drawer_list"><a className="side_drawer_navLink" href="sign_up"><div >Sign Up</div></a></li>
         </ul>
 </nav>
 {backdrop}

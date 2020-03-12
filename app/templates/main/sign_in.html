@@ -10,7 +10,7 @@
                 <form method="post" action="/sign_in_user">
                     {% with messages = get_flashed_messages() %}
                     {% if messages %}
-                        <p class=flashes>
+                        <p class="flashes error">
                         {% for message in messages %}
                         <i>{{ message }}</i>
                         {% endfor %}
