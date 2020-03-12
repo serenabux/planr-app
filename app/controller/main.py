@@ -10,6 +10,7 @@ import sys
 sys.path.append('../../')
 import new_user
 import sign_in 
+import user_pull
 
 bp = Blueprint('main', __name__)
 
@@ -49,8 +50,9 @@ def sign_in_user():
         flash("Invalid email or password. Please try again.")
         return render_template('main/sign_in.html', title='Sign In')
     else:
-       return render_template('main/main_dashboard.html', title='Flask-PWA')
-
+        name = user_pull.get_name(email)
+        return render_template('main/main_dashboard.html', title='Dashboard', user = name)
+    
 @bp.route('/sign_in')
 def test():
     return render_template('main/sign_in.html', title='Sign In')
