@@ -15,7 +15,6 @@ import user_pull
 bp = Blueprint('main', __name__)
 
 
-
 @bp.route('/')
 def index():
     return render_template('main/index.html',
@@ -52,8 +51,8 @@ def sign_in_user():
         return render_template('main/sign_in.html', title='Sign In')
     else:
         name = user_pull.get_name(email)
-        trips = user_pull.get_trips(email)
-        return render_template('main/main_dashboard.html', title='Dashboard', user = name, t = trips)
+        trips, creators= user_pull.get_trips(email)
+        return render_template('main/main_dashboard.html', title='Dashboard', user = name, t = trips, c = creators)
     
 @bp.route('/sign_in')
 def test():
