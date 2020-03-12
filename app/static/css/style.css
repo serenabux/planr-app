@@ -5,6 +5,30 @@
   --link-hover-color: #5c556b;
 }
 
+h1, h2, h3, h4, h5, li{
+  font-family: 'Roboto', sans-serif;
+  font-weight: black;
+}
+
+li{
+  font-size: 1.5em;
+}
+
+p{
+  font-size: 1.5em;
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.875em;
+}
+
+h1{
+  font-size: 3em;
+}
+
+h2{
+  font-size: 2.5em;
+  margin-bottom: 12px;
+}
+
 
 *, *:before, *:after {
   margin: 0;
@@ -68,6 +92,9 @@ header {
   }
 }
 
+.container{
+  padding: 0 10%;
+}
 
 
 /* LandingHeader Styles */
@@ -103,7 +130,6 @@ header {
 .navLinks{
   margin-top: 10px;
   color: white;
-  font-family: "Helvetica";
   font-weight: bold;
   text-decoration: none;
 }
@@ -180,7 +206,6 @@ header {
 
 .side_drawer_navLink{
   color: #39b8ea;
-  font-family: "Helvetica";
   font-weight: bold;
   text-decoration: none;
 } 
@@ -247,7 +272,7 @@ overflow: hidden;
 }
 
 .hero_heading{
-  margin-top: 175px;
+  margin-top: 20%;
 }
 
 .hero_image{
@@ -347,9 +372,9 @@ margin-right: 100px;
 
 .sign_up_container{
   margin-left: 108px;
-  margin-top: 10%;
+  margin-top: 5%;
   vertical-align: middle;
-  width: 40%;
+  width: 50%;
 }
 
 .form_field{
@@ -371,7 +396,6 @@ margin-right: 100px;
   background: #39b8ea;
   border-radius: 10px;
   padding: 10px;
-  font-family: Helvetica, Sans-Serif;
 font-size: 1em;
   font-weight: bold;
   width: 100%;
