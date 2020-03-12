@@ -38,13 +38,14 @@ def sign_up_user():
         flash("Passwords do not match")
         return render_template('main/sign_up.html', title='Sign Up')
     else:
-        return render_template('main/main_dashboard.html', title='Sign In')
+        return render_template('main/main_dashboard.html', title='Main Dashboard')
 
 @bp.route('/sign_in_user', methods=['POST'])
 def sign_in_user():
     email = request.form['email']
     password = request.form['password']
     ret = sign_in.new_user(email, password)
+    return render_template('main/main_dashboard.html', title='Flask-PWA')
     if(ret == -1):
         flash("Invalid email or password. Please try again.")
         return render_template('main/sign_in.html', title='Sign In')

@@ -1,10 +1,22 @@
 {% extends "base.html" %}
 {% block body %}
-<div id="landingHeader_container"></div>
+{%block header%}
+<header class="landingHeading">
+  <nav class="landingHeading_navigation"> 
+      <div>
+          <a href="/"><img class="landingHeading_logo"src="../../images/logoWhite.png"/></a>
+      </div>
+      <div class="spacer"></div>
+      <div class="landingHeading_ul">
+          <a href="" class="landingHeading_li font-large" style="text-decoration: none;">	&#9881;</a>
+      </div>
+  </nav>
+</header>
+{% endblock %}
 <main>
-  {% block main %}{% endblock %}
+  {% block main %}
+  {% endblock %}
 </main>
-
 <footer>
     <button id="btnAdd">Install App</button>
 </footer>

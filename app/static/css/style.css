@@ -102,8 +102,16 @@ header {
 @media screen and (min-width: 800px) {
   article > main {
     max-width: 80%;
-    margin: 24px auto;
+    margin: 64px auto;
   }
+}
+
+.margin-top-108{
+  margin-top: 108px;
+}
+
+.font-large{
+  font-size: 3.5em;
 }
 
 .container{
@@ -123,6 +131,7 @@ header {
 .landingHeading{
   width: 100%;
   position: fixed;
+  top: 0px; z-index: 2;
 }
 
 .landingHeading_logo{
@@ -340,11 +349,11 @@ text-align: center;
       margin-top: 24px;
   }
   .feature_image{
-    margin-bottom: 48px;
+    margin-bottom: 24px;
   }
 
   .feature_description{
-    margin-bottom: 48px;
+    margin-bottom: 24px;
   }
 
 }
@@ -420,7 +429,6 @@ margin-right: 100px;
 
 .sign_up_container{
   margin-left: 108px;
-  margin-top: 5%;
   vertical-align: middle;
   width: 50%;
 }
@@ -473,7 +481,6 @@ font-size: 1em;
 .sign_up_image{
   width: 40%; 
   height: 40%;
-  margin-top: 5%;
   vertical-align: middle;
 }
 
