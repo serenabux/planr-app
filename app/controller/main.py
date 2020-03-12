@@ -45,7 +45,6 @@ def sign_in_user():
     email = request.form['email']
     password = request.form['password']
     ret = sign_in.new_user(email, password)
-    return render_template('main/main_dashboard.html', title='Flask-PWA')
     if(ret == -1):
         flash("Invalid email or password. Please try again.")
         return render_template('main/sign_in.html', title='Sign In')
