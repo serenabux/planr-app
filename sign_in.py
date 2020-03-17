@@ -8,10 +8,10 @@ def new_user(email, password):
 	email = email.lower()
 
 	try:
-		conn = psycopg2.connect(host = "ec2-54-197-48-79.compute-1.amazonaws.com", 
-								database = "ds0v3p1cohl5b", 
-								user = "zkjphkaesmnrrh", 
-								password = "768f0dd94bb303647eb7f1571e32222caf0697acad66af9323474a883fa22a29", 
+		conn = psycopg2.connect(host = "ec2-23-20-129-146.compute-1.amazonaws.com", 
+								database = "d3dcr472e5h2ct", 
+								user = "neaxjuhlihfatr", 
+								password = "2d3bd53ead754250b40caf5c639e596c3100a98525137764af660696765b0b4a", 
 								port = "5432")
 		cursor = conn.cursor()
 		query_valid = "select count(*) from users where email = \'" + email + "\'"
@@ -43,10 +43,10 @@ def new_user(email, password):
 def get_id(email):
 	email = email.lower()
 	try:
-		conn = psycopg2.connect(host = "ec2-54-197-48-79.compute-1.amazonaws.com", 
-								database = "ds0v3p1cohl5b", 
-								user = "zkjphkaesmnrrh", 
-								password = "768f0dd94bb303647eb7f1571e32222caf0697acad66af9323474a883fa22a29", 
+		conn = psycopg2.connect(host = "ec2-23-20-129-146.compute-1.amazonaws.com", 
+								database = "d3dcr472e5h2ct", 
+								user = "neaxjuhlihfatr", 
+								password = "2d3bd53ead754250b40caf5c639e596c3100a98525137764af660696765b0b4a", 
 								port = "5432")
 		cursor = conn.cursor()
 		q = "select user_id from users where email = '{}'".format(email)

@@ -14,14 +14,13 @@ def create_user(email, first_name, last_name, password1, password2):
 	last_name = last_name.lower()
 
 	try:
-		conn = psycopg2.connect(host = "ec2-54-197-48-79.compute-1.amazonaws.com", 
-								database = "ds0v3p1cohl5b", 
-								user = "zkjphkaesmnrrh", 
-								password = "768f0dd94bb303647eb7f1571e32222caf0697acad66af9323474a883fa22a29", 
+		conn = psycopg2.connect(host = "ec2-23-20-129-146.compute-1.amazonaws.com", 
+								database = "d3dcr472e5h2ct", 
+								user = "neaxjuhlihfatr", 
+								password = "2d3bd53ead754250b40caf5c639e596c3100a98525137764af660696765b0b4a", 
 								port = "5432")
 		cursor = conn.cursor()
 		query_valid = "select count(*) from users where email = \'" + email + "\'"
-		print(query_valid)
 		cursor.execute(query_valid)
 		num = cursor.fetchone()[0]
 		if(num > 0):
@@ -32,7 +31,6 @@ def create_user(email, first_name, last_name, password1, password2):
 										default = "pbkdf2_sha256",
 										pbkdf2_sha256__default_rounds=30000)
 			hashed_pw = pwd_context.encrypt(password2)
-			print(hashed_pw)
 			query_insert = "insert into users (email, first_name, last_name, date_created, password) VALUES ('{}', '{}', '{}', CURRENT_DATE,'{}')".format(email, first_name, last_name, hashed_pw)	
 		
 			cursor.execute(query_insert)
@@ -41,7 +39,6 @@ def create_user(email, first_name, last_name, password1, password2):
 		return 0
 
 	except (Exception, psycopg2.Error) as error:
-		print(error)
 		#DATABASE CONNECTION/OTHER JSON ERROR CODE
 		return -1
 	finally:
@@ -49,5 +46,4 @@ def create_user(email, first_name, last_name, password1, password2):
 			conn.commit()
 			cursor.close()
 			conn.close()
-			print("connection closed")
 
