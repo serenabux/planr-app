@@ -3,14 +3,30 @@
 
 <article>
     <main class="margin-top-108">
+      <h1 class="centered">Welcome {{ name }}!</h1>
+      <div class="row">
+        <a href="" class="card_link">
+          <div class="card">
+            <h2 class="margin-bottom-24">Upcoming Adventures</h2>
+            <img src="{{ url_for('static', filename='images/upcoming_adventure.png') }}" alt="hot air balloon over mountaines">
+          </div>
+        </a>
+        <a href="" class="card_link">
+          <div class="card">
+            <h2 class="margin-bottom-24">New Adventure</h2>
+            <img src="{{ url_for('static', filename='images/new_adventure.png') }}" alt="air plane and earth">
+          </div>
+        </a>
+        <a href="" class="card_link">
+          <div class="card">
+            <h2 class="margin-bottom-24">Explore Locations</h2>
+            <img src="{{ url_for('static', filename='images/explore_adventure.png') }}" alt="air plane and earth">
+          </div>
+        </a>
+    </div>
   </main>
 </article>
 
-<body>
-  <h1 class="centered">My Adventures</h1>
-  <h2>Welcome {{ name }}!</h2>
-
-</body>
 
 
 {% endblock %}
