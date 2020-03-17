@@ -4,7 +4,6 @@ import psycopg2
 import sys
 
 def new_user(email, password):
-
 	#Non-encrypting information
 	email = email.lower()
 
@@ -32,6 +31,27 @@ def new_user(email, password):
 		else:
 			return -1
 
+	except (Exception, psycopg2.Error) as error:
+		#DATABASE CONNECTION/OTHER JSON ERROR CODE
+		return -1
+	finally:
+		if(conn):
+			conn.commit()
+			cursor.close()
+			conn.close()
+
+def get_id(email):
+	email = email.lower()
+	try:
+		conn = psycopg2.connect(host = "ec2-54-197-48-79.compute-1.amazonaws.com", 
+								database = "ds0v3p1cohl5b", 
+								user = "zkjphkaesmnrrh", 
+								password = "768f0dd94bb303647eb7f1571e32222caf0697acad66af9323474a883fa22a29", 
+								port = "5432")
+		cursor = conn.cursor()
+		q = "select user_id from users where email = '{}'".format(email)
+		cursor.execute(q)
+		return cursor.fetchone()[0]
 	except (Exception, psycopg2.Error) as error:
 		#DATABASE CONNECTION/OTHER JSON ERROR CODE
 		return -1

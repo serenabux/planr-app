@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template, request, flash,
+    Blueprint, render_template, request, flash, url_for, redirect
 )
 import flask
 
@@ -50,10 +50,22 @@ def sign_in_user():
         flash("Invalid email or password. Please try again.")
         return render_template('main/sign_in.html', title='Sign In')
     else:
-        name = user_pull.get_name(email)
-        trips, creators= user_pull.get_trips(email)
-        return render_template('main/main_dashboard.html', title='Dashboard', user = name, t = trips, c = creators)
-    
+        uid = sign_in.get_id(email)
+        if(uid == -1):
+            uid = None
+        return redirect(url_for('main.main_dashboard', uid = uid))
+
 @bp.route('/sign_in')
 def test():
     return render_template('main/sign_in.html', title='Sign In')
+
+@bp.route('/main_dashboard/', defaults = {'uid': None})
+@bp.route('/main_dashboard/<uid>')
+def main_dashboard(uid):
+    if(uid == None):
+        return redirect(url_for('main.test'))
+    else:   
+        name = user_pull.get_name(uid)
+        return render_template('main/main_dashboard.html', name = name)
+
+
