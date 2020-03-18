@@ -2,17 +2,18 @@ import json
 from passlib.context import CryptContext
 import psycopg2
 import sys
+import DB_manager
 
 def new_user(email, password):
 	#Non-encrypting information
 	email = email.lower()
 
 	try:
-		conn = psycopg2.connect(host = "ec2-23-20-129-146.compute-1.amazonaws.com", 
-								database = "d3dcr472e5h2ct", 
-								user = "neaxjuhlihfatr", 
-								password = "2d3bd53ead754250b40caf5c639e596c3100a98525137764af660696765b0b4a", 
-								port = "5432")
+		conn = psycopg2.connect(host = DB_manager.get_hostname(), 
+                        database = DB_manager.get_database(), 
+                        user = DB_manager.get_user(), 
+                        password = DB_manager.get_password(), 
+                        port = DB_manager.get_port())
 		cursor = conn.cursor()
 		query_valid = "select count(*) from users where email = \'" + email + "\'"
 		cursor.execute(query_valid)
@@ -43,11 +44,11 @@ def new_user(email, password):
 def get_id(email):
 	email = email.lower()
 	try:
-		conn = psycopg2.connect(host = "ec2-23-20-129-146.compute-1.amazonaws.com", 
-								database = "d3dcr472e5h2ct", 
-								user = "neaxjuhlihfatr", 
-								password = "2d3bd53ead754250b40caf5c639e596c3100a98525137764af660696765b0b4a", 
-								port = "5432")
+		conn = psycopg2.connect(host = DB_manager.get_hostname(), 
+                        database = DB_manager.get_database(), 
+                        user = DB_manager.get_user(), 
+                        password = DB_manager.get_password(), 
+                        port = DB_manager.get_port())
 		cursor = conn.cursor()
 		q = "select user_id from users where email = '{}'".format(email)
 		cursor.execute(q)
