@@ -2,29 +2,36 @@ import json
 from passlib.context import CryptContext
 import psycopg2
 import sys
+import DB_manager
 
-conn = psycopg2.connect(host = "ec2-23-20-129-146.compute-1.amazonaws.com", 
-                        database = "d3dcr472e5h2ct", 
-                        user = "neaxjuhlihfatr", 
-                        password = "2d3bd53ead754250b40caf5c639e596c3100a98525137764af660696765b0b4a", 
-                        port = "5432")
+conn = psycopg2.connect(host = DB_manager.get_hostname(), 
+                        database = DB_manager.get_database(), 
+                        user = DB_manager.get_user(), 
+                        password = DB_manager.get_password(), 
+                        port = DB_manager.get_port())
 cursor = conn.cursor()
 
 def get_name(uid):
-    q = "select first_name from users where user_id = '{}'".format(uid)
+    q = "select first_name from users where user_id = {}".format(uid)
     cursor.execute(q)
     name = cursor.fetchone()[0].capitalize()
     return name
 
-def get_trips(em):
-    q = "select * from trips where user_id = (select user_id from users where email = '{}') or members like '%{}%'".format(em, em)
-    cursor.execute(q)
+def get_upcoming_trips(uid):
+    ret = {"Trips": []}
+    q_email = "select email from users where user_id = {}".format(uid)
+    cursor.execute(q_email)
+    email = cursor.fetchone()[0]
+    q_trips = "select tripname, loc_id, TO_CHAR(trip_start,  'MM/DD/YYYY'), TO_CHAR(trip_end,  'MM/DD/YYYY') from trips where user_id = {} or members like '%{}%'".format(uid, email)
+    cursor.execute(q_trips)
     trips = cursor.fetchall()
-    creators = []
-    for trip in trips:
-        uid = trip[2]
-        q2 = "select first_name, last_name from users where user_id = {}".format(uid)
-        cursor.execute(q2)
-        ret = cursor.fetchall()
-        creators.append(ret[0])
-    return trips, creators
+    for t in trips:
+        d = {}
+        d['name'] = t[0]
+        q_loc = "select city from destinations where dest_id = {}".format(t[1])
+        cursor.execute(q_loc)
+        d['location'] = cursor.fetchone()[0]
+        d['start'] = t[2]
+        d['end'] = t[3]
+        ret["Trips"].append(d)
+    return ret
