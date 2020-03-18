@@ -3,9 +3,9 @@
 
 <article>
     <main class="margin-top-108">
-      <h1 class="centered">Welcome {{ name }}!</h1>
+      <h1 class="centered">Hi {{ name }}!</h1>
       <div class="row">
-        <a href="" class="card_link">
+        <a href="{{url_for('main.trip_dashboard', uid = uid)}}" class="card_link">
           <div class="card">
             <h2 class="margin-bottom-24">Upcoming Adventures</h2>
             <img src="{{ url_for('static', filename='images/upcoming_adventure.png') }}" alt="hot air balloon over mountaines">

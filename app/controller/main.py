@@ -68,4 +68,12 @@ def main_dashboard(uid):
         name = user_pull.get_name(uid)
         return render_template('main/main_dashboard.html', name = name)
 
+@bp.route('/trip_dashboard/', defaults = {'uid': None})
+@bp.route('/trip_dashboard/<uid>')
+def trip_dashboard(uid):
+    if(uid == None):
+        return redirect(url_for('main.test'))
+    else:
+        return render_template('main/trip_dashboard.html')
+
 
