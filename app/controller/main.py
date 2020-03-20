@@ -75,6 +75,20 @@ def trip_dashboard(uid):
         return redirect(url_for('main.test'))
     else:
         trip = user_pull.get_upcoming_trips(uid)
-        return render_template('main/trip_dashboard.html', trip = trip)
+        return render_template('main/trip_dashboard.html', trip = trip, uid = uid)
+
+@bp.route('/trip_page/', defaults = {'uid': None, 'trip_id': None})
+@bp.route('/trip_page/<uid>/<trip_id>')
+def trip_page(uid,trip_id):
+    if(uid == None):
+        print("no uid")
+        return redirect(url_for('main.test'))
+    elif(trip_id == None):
+        print("no trip_id")
+        return redirect(url_for('main.trip_dashboard', uid = uid))
+    else:
+        print(uid)
+        return render_template('main/trip_page.html', trip_id = trip_id, uid = uid)
+    
 
 

@@ -130,6 +130,12 @@ header {
   margin-left:24px;
 }
 
+@media (max-width: 768px){
+  .margin-left-24{
+    margin-bottom: 24px;
+  }
+}
+
 .font-large{
   font-size: 3.5em;
 }
@@ -153,6 +159,12 @@ header {
   justify-content: center;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
 
 /* LandingHeader Styles */
 .landingHeading{
@@ -567,11 +579,12 @@ font-size: 1em;
   border-style: dotted;
   border-color: var(--link-hover-color);
   color: var(--link-hover-color);
-  height: 166px;
+  height: 180px;
   text-decoration: none;
   font-weight: bold;
   display: flex;
   align-items: center;
+  
 }
 
 .add_trip:hover{
