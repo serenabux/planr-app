@@ -56,14 +56,14 @@ def sign_in_user():
         return redirect(url_for('main.main_dashboard', uid = uid))
 
 @bp.route('/sign_in')
-def test():
+def sign_in():
     return render_template('main/sign_in.html', title='Sign In')
 
 @bp.route('/main_dashboard/', defaults = {'uid': None})
 @bp.route('/main_dashboard/<uid>')
 def main_dashboard(uid):
     if(uid == None):
-        return redirect(url_for('main.test'))
+        return redirect(url_for('main.sign_in'))
     else:   
         name = user_pull.get_name(uid)
         return render_template('main/main_dashboard.html', name = name, uid = uid)
@@ -72,7 +72,7 @@ def main_dashboard(uid):
 @bp.route('/trip_dashboard/<uid>')
 def trip_dashboard(uid):
     if(uid == None):
-        return redirect(url_for('main.test'))
+        return redirect(url_for('main.sign_in'))
     else:
         trip = user_pull.get_upcoming_trips(uid)
         return render_template('main/trip_dashboard.html', trip = trip, uid = uid)
@@ -82,7 +82,7 @@ def trip_dashboard(uid):
 def trip_page(uid,trip_id):
     if(uid == None):
         print("no uid")
-        return redirect(url_for('main.test'))
+        return redirect(url_for('main.sign_in'))
     elif(trip_id == None):
         print("no trip_id")
         return redirect(url_for('main.trip_dashboard', uid = uid))
