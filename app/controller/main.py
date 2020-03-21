@@ -56,7 +56,7 @@ def sign_in_user():
         return redirect(url_for('main.main_dashboard', uid = uid))
 
 @bp.route('/sign_in')
-def sign_in():
+def sign_in_page():
     return render_template('main/sign_in.html', title='Sign In')
 
 @bp.route('/main_dashboard/', defaults = {'uid': None})
@@ -72,7 +72,7 @@ def main_dashboard(uid):
 @bp.route('/trip_dashboard/<uid>')
 def trip_dashboard(uid):
     if(uid == None):
-        return redirect(url_for('main.sign_in'))
+        return redirect(url_for('main.sign_in_page'))
     else:
         trip = user_pull.get_upcoming_trips(uid)
         return render_template('main/trip_dashboard.html', trip = trip, uid = uid)
@@ -81,14 +81,19 @@ def trip_dashboard(uid):
 @bp.route('/trip_page/<uid>/<trip_id>')
 def trip_page(uid,trip_id):
     if(uid == None):
-        print("no uid")
-        return redirect(url_for('main.sign_in'))
+        return redirect(url_for('main.sign_in_page'))
     elif(trip_id == None):
-        print("no trip_id")
         return redirect(url_for('main.trip_dashboard', uid = uid))
     else:
-        print(uid)
         return render_template('main/trip_page.html', trip_id = trip_id, uid = uid)
+
+@bp.route('/create_trip/', defaults = {'uid': None})
+@bp.route('/create_trip/<uid>')
+def create_trip(uid):
+    if(uid == None):
+        return redirect(url_for('main.sign_in_page'))
+    else:
+        return render_template('main/create_trip.html', uid = uid)
     
 
 
