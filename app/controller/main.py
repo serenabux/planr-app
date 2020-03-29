@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template, request, flash, url_for, redirect
+    Blueprint, render_template, request, flash, url_for, redirect, jsonify
 )
 import flask
 
@@ -94,6 +94,32 @@ def create_trip(uid):
         return redirect(url_for('main.sign_in_page'))
     else:
         return render_template('main/create_trip.html', uid = uid)
+
+@bp.route('/create_trip_name/<uid>/<name>/', defaults = {'uid': None, 'name': None})
+@bp.route('/check_trip_name/<uid>/<name>/')
+def check_trip_name(uid,name):
+    if(uid == None):
+        return redirect(url_for('main.sign_in_page'))
+    else:
+        #check if the trip name has already been added if it has then set success to -1
+        message = {'success': 0}
+        return jsonify(message)
+
+@bp.route('/invite_friends/', methods = ['POST'])
+def invite_friends():
+    #check for users email, if does not exist return -1
+    print(request.get_json())  # parse as JSON
+    message = {'sucess': 0}
+    return jsonify(message)
+
+@bp.route('/create_trip_data/<uid>/', methods=['POST'])
+@bp.route('/create_trip_data/<uid>/')
+def create_trip_data(uid):
+    print(request.get_json())
+
+
+
+
     
 
 
