@@ -36,3 +36,24 @@ def get_upcoming_trips(uid):
         d['end'] = t[4]
         ret["Trips"].append(d)
     return ret
+
+def validate_name(uid, new_name):
+    q_email = "select email from users where user_id = {}".format(uid)
+    cursor.execute(q_email)
+    email = cursor.fetchone()[0]         
+    q_trips = "select tripname from trips where user_id = {} or members like '%{}%'".format(uid, email)
+    cursor.execute(q_trips)
+    trips = cursor.fetchall()
+    if(new_name not in trips):
+        return 1
+    else:
+        return -1
+
+def validate_invitee(email):
+    q_count = "select count(*) from users where email = '{}'".format(email)
+    cursor.execute(q_count)
+    count = cursor.fetchone()[0]
+    if count != 0:
+        return 1
+    else: 
+        return -1
