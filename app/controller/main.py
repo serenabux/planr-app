@@ -98,20 +98,26 @@ def create_trip(uid):
 
 @bp.route('/create_trip_data/<uid>/<num_friends>', methods=['POST'])
 def create_trip_data(uid, num_friends):
-    print(num_friends)
     name = request.form['trip_name']
     location = request.form['trip_destination']
     start = request.form['trip_start_date']
     end = request.form['trip_end_date']
     i = 0
-    print("here")
     invitees = []
     while i < int(num_friends) + 1:
-        print(i)
         if request.form['invite_friend_' + str(i)] != "":
             invitees.append(request.form['invite_friend_' + str(i)])
         i += 1
-    print(name, location, start, end, invitees)
+    valid_name = user_pull.validate_name(uid, name)
+    if(valid_name == -1):
+        print("INVALID TRIP NAME")
+    if(len(invitees)):
+        for p in invitees:
+            if(user_pull.validate_invitee(p) == -1):
+                print("invalid user:",p)
+    
+    user_pull.add_trip(uid, name, location, start, end, invitees)
+
     return render_template('main/trip_page.html', trip_name = name)
 
 

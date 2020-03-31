@@ -2,6 +2,7 @@ import json
 from passlib.context import CryptContext
 import psycopg2
 import sys
+from datetime import datetime
 import DB_manager
 
 conn = psycopg2.connect(host = DB_manager.get_hostname(), 
@@ -44,10 +45,10 @@ def validate_name(uid, new_name):
     q_trips = "select tripname from trips where user_id = {} or members like '%{}%'".format(uid, email)
     cursor.execute(q_trips)
     trips = cursor.fetchall()
-    if(new_name not in trips):
-        return 1
-    else:
-        return -1
+    for name in trips:
+        if(new_name.lower() == name[0].lower()):
+            return -1
+    return 1
 
 def validate_invitee(email):
     q_count = "select count(*) from users where email = '{}'".format(email)
@@ -57,3 +58,21 @@ def validate_invitee(email):
         return 1
     else: 
         return -1
+
+def add_trip(uid, name, location, start, end, invitees):
+    city, country = location.split(',')
+    country = country[1:]
+    q_loc_id = "select dest_id from destinations where city = '{}' and country = '{}'".format(city, country)
+    cursor.execute(q_loc_id)
+    dest_id = cursor.fetchone()[0]
+    start = datetime.strptime(start, '%Y-%m-%d')
+    end = datetime.strptime(end, '%Y-%m-%d')
+    if(len(invitees)):
+        members = ','.join(invitees)
+        q_insert = "insert into trips (loc_id, user_id, members, date_created, trip_start, trip_end, tripname) values ({}, {}, '{}', now(), '{}', '{}', '{}')".format(dest_id, uid, members, start, end, name)
+        cursor.execute(q_insert)
+        conn.commit()
+    else:
+        q_insert = "insert into trips (loc_id, user_id, date_created, trip_start, trip_end, tripname) values ({}, {}, now(), '{}', '{}', '{}')".format(dest_id, uid, start, end, name)
+        cursor.execute(q_insert)
+        conn.commit()
