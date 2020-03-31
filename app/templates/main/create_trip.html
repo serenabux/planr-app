@@ -6,7 +6,7 @@
     <main class="margin-top-108">
         <div class="container">
         <h2>Create a New Adventure!</h2>
-        <form method="post" action="/create_trip_data/{{uid}}/">
+        <form method="post" id="create_trip_form" action="/create_trip_data/{{uid}}/0">
             <label>
                 Adventure Name *
                 <input class = "form_field" type='text' name='trip_name' required/>
@@ -33,7 +33,7 @@
                     Friend's Email
                     <div id="friend_email_inputs">
                         <input class="form_field" type="email" name="invite_friend_0" id="invite_friend_0">
-                        <button type= "button" id="add_invite_field" class="secondary_button" onclick='add_field(1)'>+</button>
+                        <button type= "button" id="add_invite_field" class="secondary_button" onclick='add_field(1, {{uid}})'>+</button>
                     </div>
                 </label>
             </div>

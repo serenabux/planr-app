@@ -96,17 +96,19 @@ def create_trip(uid):
         return render_template('main/create_trip.html', uid = uid)
 
 
-@bp.route('/create_trip_data/<uid>/', methods=['POST'])
-@bp.route('/create_trip_data/<uid>/')
-def create_trip_data(uid):
+@bp.route('/create_trip_data/<uid>/<num_friends>/', methods=['POST'])
+@bp.route('/create_trip_data/<uid>/<num_friends>')
+def create_trip_data(uid, num_friends):
     name = request.form['trip_name']
     location = request.form['trip_destination']
     start = request.form['trip_start_date']
     end = request.form['trip_end_date']
     i = 0
-    while request.form['invite_friend_' + str(i)]:
-        print['invite_friend_' + str(i)]
+    while i <= int(num_friends):
+        if request.form['invite_friend_' + str(i)] != "":
+            print('invite_friend_' + str(i))
         i += 1
+    return render_template('main/trip_page.html')
 
 
 
