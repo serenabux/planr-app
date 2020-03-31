@@ -3,15 +3,15 @@
         var code = ""
         for(var i=0; i <= number; i++){
             if(document.getElementById('invite_friend_' + String(i)) && document.getElementById('invite_friend_' + String(i)).value){
-                code += "<input class='form_field' type='email' value='" + document.getElementById('invite_friend_' + String(i)).value + "' name='invite_friend_"+ i + "'>";
+                code += "<input class='form_field' type='email' value='" + document.getElementById('invite_friend_' + String(i)).value + "' name='invite_friend_"+ i + "' id='invite_friend_"+ i + "'>";
             }
             else{
-                code += "<input class='form_field' type='email' name='invite_friend_"+ i + " id='invite_friend_"+ i + "'>";
+                code += "<input class='form_field' type='email' name='invite_friend_"+ i + "' id='invite_friend_"+ i + "'>";
             }
         }
         code += "<button id='add_invite_field' class='secondary_button' onclick='add_field(" + (number + 1) + ")'>Add More</button>"
         document.getElementById("friend_email_inputs").innerHTML = code;
-        document.getElementById("create_trip_form").action = "/create_trip_data/" + uid + "/" + number + "/"
+        document.getElementById("create_trip_form").action = "/create_trip_data/" + uid + "/" + number;
     };
 
 
