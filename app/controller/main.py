@@ -112,7 +112,7 @@ def create_trip_data(uid, num_friends):
             invitees.append(request.form['invite_friend_' + str(i)])
         i += 1
     print(name, location, start, end, invitees)
-    return render_template('main/trip_page.html')
+    return render_template('main/trip_page.html', trip_name = name)
 
 
 
