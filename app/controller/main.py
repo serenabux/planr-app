@@ -105,11 +105,13 @@ def create_trip_data(uid, num_friends):
     end = request.form['trip_end_date']
     i = 0
     print("here")
+    invitees = []
     while i < int(num_friends) + 1:
         print(i)
         if request.form['invite_friend_' + str(i)] != "":
-            print('invite_friend_' + str(i))
+            invitees.append(request.form['invite_friend_' + str(i)])
         i += 1
+    print(name, location, start, end, invitees)
     return render_template('main/trip_page.html')
 
 

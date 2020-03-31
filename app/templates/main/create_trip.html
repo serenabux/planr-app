@@ -4,16 +4,16 @@
 
 <article>
     <main class="margin-top-108">
-        <div class="container">
-        <h2>Create a New Adventure!</h2>
+        <div class="create_trip_container">
+        <h2 class="centered margin-bottom-24">Create a New Adventure!</h2>
         <form method="post" id="create_trip_form" action="/create_trip_data/{{uid}}/0">
             <label>
-                Adventure Name *
+                Adventure Name <span class="required">*</span>
                 <input class = "form_field" type='text' name='trip_name' required/>
             </label>
             <label>
-                Destination *
-                <select class="form_field" name='trip_destination' required>
+                Destination <span class="required">*</span>
+                <select class="form_field minimal" name='trip_destination' required>
                     <option value="Paris, France">Paris, France</option>
                     <option value="Sydney, Australia">Sydney, Australia</option>
                     <option value="Barcelona, Spain">Barcelona, Spain</option>
@@ -21,19 +21,21 @@
                   </select>
             </label>
             <label>
-                Start Date *
+                Start Date <span class="required">*</span>
                 <input class = "form_field" type='date' name='trip_start_date' required/>
             </label>
             <label>
-                End Date *
+                End Date <span class="required">*</span>
                 <input class = "form_field" type='date' name='trip_end_date' required/>
             </label>
             <div>
                 <label id="invite_friend">
                     Friend's Email
                     <div id="friend_email_inputs">
-                        <input class="form_field" type="email" name="invite_friend_0" id="invite_friend_0">
-                        <button type= "button" id="add_invite_field" class="secondary_button" onclick='add_field(1, {{uid}})'>+</button>
+                        <div id="last_email">
+                            <input class="form_field" type="email" name="invite_friend_0" id="invite_friend_0">
+                            <button type= "button" id="add_invite_field" class="add_button" onclick='add_field(1, {{uid}})'>+</button>
+                        </div>
                     </div>
                 </label>
             </div>
