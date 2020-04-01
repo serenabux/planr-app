@@ -100,8 +100,10 @@ def create_trip(uid):
 def create_trip_data(uid, num_friends):
     name = request.form['trip_name']
     location = request.form['trip_destination']
-    start = request.form['trip_start_date']
-    end = request.form['trip_end_date']
+    dates = request.form['date_range']
+    split_dates = dates.split(" - ")
+    start = split_dates[0]
+    end = split_dates[1]
     i = 0
     invitees = []
     while i < int(num_friends) + 1:

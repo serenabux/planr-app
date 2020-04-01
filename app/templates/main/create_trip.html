@@ -8,11 +8,11 @@
         <h2 class="centered margin-bottom-24">Create a New Adventure!</h2>
         <form method="post" id="create_trip_form" action="/create_trip_data/{{uid}}/0">
             <label>
-                Adventure Name <span class="required">*</span>
+                Adventure Name <span title="This field is mandatory" aria-label="required" class="required">*</span>
                 <input class = "form_field" type='text' name='trip_name' required/>
             </label>
             <label>
-                Destination <span class="required">*</span>
+                Destination <span title="This field is mandatory" aria-label="required" class="required">*</span>
                 <select class="form_field minimal" name='trip_destination' required>
                     <option value="Paris, France">Paris, France</option>
                     <option value="Sydney, Australia">Sydney, Australia</option>
@@ -21,13 +21,17 @@
                   </select>
             </label>
             <label>
-                Start Date <span class="required">*</span>
+                Adventure Dates <span title="This field is mandatory" aria-label="required" class="required">*</span>
+                <input class="form_field" type="text" name="date_range" id="date_range"/>
+            </label>
+            <!-- <label>
+                Start Date <span title="This field is mandatory" aria-label="required" class="required">*</span>
                 <input class = "form_field" type='date' name='trip_start_date' required/>
             </label>
             <label>
-                End Date <span class="required">*</span>
+                End Date <span title="This field is mandatory" aria-label="required" class="required">*</span>
                 <input class = "form_field" type='date' name='trip_end_date' required/>
-            </label>
+            </label> -->
             <div>
                 <label id="invite_friend">
                     Friend's Email
@@ -38,9 +42,9 @@
                         </div>
                     </div>
                 </label>
-            </div>
             <button type="submit" class="sign_up_button">Create!</button>
         </form>
+        <p class="error"></p>
         </div>
     </main>
     <script src="/js/create_trip_step.js"></script>
