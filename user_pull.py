@@ -65,8 +65,8 @@ def add_trip(uid, name, location, start, end, invitees):
     q_loc_id = "select dest_id from destinations where city = '{}' and country = '{}'".format(city, country)
     cursor.execute(q_loc_id)
     dest_id = cursor.fetchone()[0]
-    start = datetime.strptime(start, '%Y-%m-%d')
-    end = datetime.strptime(end, '%Y-%m-%d')
+    start = datetime.strptime(start, '%m/%d/%Y')
+    end = datetime.strptime(end, '%m/%d/%Y')
     if(len(invitees)):
         members = ','.join(invitees)
         q_insert = "insert into trips (loc_id, user_id, members, date_created, trip_start, trip_end, tripname) values ({}, {}, '{}', now(), '{}', '{}', '{}')".format(dest_id, uid, members, start, end, name)
