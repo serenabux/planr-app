@@ -77,6 +77,18 @@ def trip_dashboard(uid):
         trip = user_pull.get_upcoming_trips(uid)
         return render_template('main/trip_dashboard.html', trip = trip, uid = uid)
 
+@bp.route('/delete_trip/<trip_name>/', defaults = {'trip_name': None})
+@bp.route('/delete_trip/<trip_name>/')
+def delete_trip(trip_name):
+    print("delete_trip")
+    if(trip_name == None):
+        return "false"
+    else:
+        #delete trip from database, return true if works, false if not
+        return "true"
+
+
+
 @bp.route('/trip_page/', defaults = {'uid': None, 'trip_id': None})
 @bp.route('/trip_page/<uid>/<trip_id>')
 def trip_page(uid,trip_id):
