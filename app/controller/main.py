@@ -112,13 +112,13 @@ def create_trip_data(uid, num_friends):
         i += 1
     valid_name = user_pull.validate_name(uid, name)
     if(valid_name == -1):
-        print("INVALID TRIP NAME")
-    if(len(invitees)):
+        return render_template('main/create_trip.html', uid = uid, message = "Invalid name - Cannot have same name trips")
+    elif(len(invitees)):
         for p in invitees:
             if(user_pull.validate_invitee(p) == -1):
-                print("invalid user:",p)
-    
-    user_pull.add_trip(uid, name, location, start, end, invitees)
+                return render_template('main/create_trip.html', uid = uid, message = "Invalid invitees")
+            else:
+                user_pull.add_trip(uid, name, location, start, end, invitees)
 
     return render_template('main/trip_page.html', trip_name = name)
 
