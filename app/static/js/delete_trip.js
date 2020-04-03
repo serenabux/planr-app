@@ -13,7 +13,7 @@ function callDelete(trip_id){
     });
 }
 
-$("button").click(function(){
+$(".delete_button").click(function(){
 	if($(this).hasClass("confirm")){
         var trip_id = this.id.split("_")
         callDelete(trip_id[0]);
@@ -24,7 +24,7 @@ $("button").click(function(){
 });
 
 // Reset
-$("button").on('mouseout', function(){
+$(".delete_button").on('mouseout', function(){
 	if($(this).hasClass("confirm") || $(this).hasClass("done")){
 		setTimeout(function(){
 			$("button").removeClass("confirm")
