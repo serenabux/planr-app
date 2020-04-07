@@ -4,15 +4,18 @@
 <header class="landingHeading">
   <nav class="landingHeading_navigation"> 
       <div>
-          <a href="/"><img class="landingHeading_logo"src="../../images/logoWhite.png"/></a>
+          <a href="{{url_for('main.main_dashboard', uid = uid)}}"><img class="landingHeading_logo"src="../../images/logoWhite.png"/></a>
       </div>
       <div class="spacer"></div>
-      <div class="dropdown landingHeading_ul">
+      <ul className="landingHeading_ul">
+        <!-- <li class="landingHeading_li"><a href="#" class="navLinks">Upcoming Adventures</a></li>
+        <li class="landingHeading_li"></li> -->
       <button onclick="toggle_settings_dropdown()" class="dropbtn">&#9881;</button>
         <div id="settings_dropdown" class="dropdown-content hidden">
           <a href="{{url_for('main.index')}}">Sign Out</a>
         </div>
-      </div>
+      </li>
+      </ul>
       <!-- <div class="landingHeading_ul">
           <a href="" class="landingHeading_li font-large" style="text-decoration: none;">	&#9881;</a>
       </div> -->

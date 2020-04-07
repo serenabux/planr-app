@@ -133,12 +133,3 @@ def create_trip_data(uid, num_friends):
                 user_pull.add_trip(uid, name, location, start, end, invitees)
 
     return render_template('main/trip_page.html', trip_name = name)
-
-
-
-
-
-
-    
-
-
