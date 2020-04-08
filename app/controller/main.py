@@ -85,6 +85,8 @@ def delete_trip(trip_id):
         return "false"
     else:
         #delete trip from database, return true if works, false if not
+        print("Trip id: ", trip_id)
+        user_pull.delete_trip(trip_id)
         return "true"
 
 
@@ -97,6 +99,7 @@ def trip_page(uid,trip_id):
     elif(trip_id == None):
         return redirect(url_for('main.trip_dashboard', uid = uid))
     else:
+        trip_info = user_pull.get_trip_info(uid, trip_id)
         return render_template('main/trip_page.html', trip_id = trip_id, uid = uid)
 
 @bp.route('/create_trip/', defaults = {'uid': None})

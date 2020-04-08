@@ -76,3 +76,59 @@ def add_trip(uid, name, location, start, end, invitees):
         q_insert = "insert into trips (loc_id, user_id, date_created, trip_start, trip_end, tripname) values ({}, {}, now(), '{}', '{}', '{}')".format(dest_id, uid, start, end, name)
         cursor.execute(q_insert)
         conn.commit()
+
+def delete_trip(trip_id):
+    q_delete = "delete from trips where trip_id = {}".format(trip_id)
+    cursor.execute(q_delete)
+    conn.commit()
+
+def get_trip_info(uid, trip_id):
+    uid = int(uid)
+    # tripname, loc_id, trip_start, trip_end, members, selected_attractions, voting_attractions
+    ret = {}
+    q_tripinfo = "select user_id, tripname, loc_id, trip_start, trip_end, members, selected_attractions, voting_attractions from trips where trip_id = {}".format(trip_id)
+    cursor.execute(q_tripinfo)
+    tripinfo = cursor.fetchone()
+    print("Input uid: ",uid)
+    print(tripinfo)
+
+    q_location = "select city, country from destinations where dest_id = {}".format(tripinfo[2])
+    cursor.execute(q_location)
+    city, country = cursor.fetchone()
+
+    members = []
+    if (tripinfo[0] == uid):
+        q_name = "select first_name, last_name from users where user_id = {}".format(uid)
+        cursor.execute(q_name)
+        first_name,last_name = cursor.fetchone()
+        first_name = first_name.capitalize()
+        last_name = last_name.capitalize()
+        name = ' '.join([first_name, last_name])
+        members.append(name)
+    else:
+        q_name = "select first_name, last_name from users where user_id = {}".format(tripinfo[0])
+        cursor.execute(q_name)
+        first_name,last_name = cursor.fetchone()
+        first_name = first_name.capitalize()
+        last_name = last_name.capitalize()
+        name = ' '.join([first_name, last_name])
+        members.append(name)
+    mems = tripinfo[5].split(',')
+    for m in mems:
+        q_name = "select first_name, last_name from users where email = '{}'".format(m)
+        cursor.execute(q_name)
+        first_name,last_name = cursor.fetchone()
+        first_name = first_name.capitalize()
+        last_name = last_name.capitalize()
+        name = ' '.join([first_name, last_name])
+        members.append(name)
+
+    ret['trip_name'] = tripinfo[1]
+    ret['city'] = city
+    ret['country'] = country
+    ret['start'] = str(tripinfo[3])
+    ret['end'] = str(tripinfo[4])
+    ret['members'] = members
+    ret['selected_attractions'] = tripinfo[6]
+    ret['voting_attractions'] = tripinfo[7]
+    return ret
