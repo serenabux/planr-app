@@ -1,26 +1,47 @@
 {% extends "base.html" %}
 {% block body %}
 {%block header%}
+<div id="backdrop_container" class=""></div>
 <header class="landingHeading">
-  <nav class="landingHeading_navigation"> 
+  <nav class="landingHeading_navigation">
+        <button class="toggle_button" onClick=drawerToggle()>
+          <div class="toggle_button_line"></div>
+          <div class="toggle_button_line"></div>
+          <div class="toggle_button_line"></div>
+      </button> 
       <div>
           <a href="{{url_for('main.main_dashboard', uid = uid)}}"><img class="landingHeading_logo"src="../../images/logoWhite.png"/></a>
       </div>
       <div class="spacer"></div>
-      <ul className="landingHeading_ul">
-        <!-- <li class="landingHeading_li"><a href="#" class="navLinks">Upcoming Adventures</a></li>
-        <li class="landingHeading_li"></li> -->
-      <button onclick="toggle_settings_dropdown()" class="dropbtn">&#9881;</button>
-        <div id="settings_dropdown" class="dropdown-content hidden">
+      <ul class="landingHeading_ul">
+        <li class="landingHeading_li"><a href="{{url_for('main.trip_dashboard', uid = uid)}}" class="navLinks">Upcoming</a></li>
+        <li class="landingHeading_li"><a href="{{url_for('main.create_trip', uid = uid)}}" class="navLinks">New Adventure</a></li> 
+        <li class="landingHeading_li"><a href="{{url_for('main.main_dashboard', uid = uid)}}" class="navLinks">Explore</a></li> 
+        <li class="landingHeading_li"><button onclick="toggle_settings_dropdown()" class="dropbtn">&#9881;</button></li>
+        <div class="dropdown-content hidden">
           <a href="{{url_for('main.index')}}">Sign Out</a>
         </div>
-      </li>
       </ul>
       <!-- <div class="landingHeading_ul">
           <a href="" class="landingHeading_li font-large" style="text-decoration: none;">	&#9881;</a>
       </div> -->
   </nav>
 </header>
+<nav class="side_drawer">
+  <div class="side_drawer_logo_wrapper">
+      <img class="side_drawer_logo" src="../../images/logoBlue.png" />
+  </div>
+  <ul class="side_drawer_ul">
+      <li class="side_drawer_list"><a class="side_drawer_navLink" href="#boxes">Upcoming</a></li>
+      <li class="side_drawer_list"><a class="side_drawer_navLink" href="#about">New Adventure</a></li>
+      <li class="side_drawer_list"><a class="side_drawer_navLink" href="#">Explore</a></li>
+      <li class="side_drawer_list"><button onclick="toggle_settings_dropdown()" class="dropbtn_side">&#9881; Settings <i class="fa fa-caret-down"></i></button></li>
+      <div class="dropdown-content hidden">
+        <a href="{{url_for('main.index')}}">Sign Out</a>
+      </div>
+      
+  </ul>
+</nav>
 {% endblock %}
 <main>
   {% block main %}

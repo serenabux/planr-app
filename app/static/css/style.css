@@ -218,11 +218,13 @@ header {
   margin: 0;
   padding: 0;
   display: flex;
+  align-items: center;
 }
 
 .landingHeading_li{
   padding: 0 0.5rem;
   color: white;
+  justify-content: center;
 }
 
 .navLinks{
@@ -351,6 +353,7 @@ header {
   height: 100%;
   background: rgba(0,0,0,0.5);
   z-index: 100;
+  top: 0;
 }
 
 
@@ -850,9 +853,15 @@ select.minimal {
 /* Dropdown Button */
 .dropbtn {
   color: white;
-  font-size: 3em;
+  font-size: 2em;
   background-color: var(--primary-color);
   border-color: var(--primary-color);
+}
+
+.dropbtn_side{
+  background-color: var(--secondary-primary-color);
+  border-color: var(--secondary-primary-color);
+  color: var(--primary-color);
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -872,7 +881,9 @@ select.minimal {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  margin-left: -124px;
+  margin-left: 280px;
+  margin-top: 45px;
+  border-radius: 8px;
 }
 
 /* Links inside the dropdown */
