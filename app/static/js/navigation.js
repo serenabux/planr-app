@@ -32,8 +32,12 @@ function toggle_settings_dropdown() {
   
   // Close the dropdown menu if the user clicks outside of it
   window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      document.getElementById("settings_dropdown").classList.remove("show");
-    document.getElementById("settings_dropdown").classList.add("hidden");
+      console.log(event.target)
+    if (!event.target.matches('.dropbtn') && !event.target.matches('.dropbtn_side')) {
+        var elements = document.getElementsByClassName('dropdown-content');
+        for(var i=0; i < elements.length; i++){
+            elements[i].classList.remove("show");
+            elements[i].classList.add("hidden");
+        }
     }
   }
