@@ -132,7 +132,6 @@ def create_trip_data(uid, num_friends):
         for p in invitees:
             if(user_pull.validate_invitee(p) == -1):
                 return render_template('main/create_trip.html', uid = uid, message = "Invalid invitees")
-            else:
-                user_pull.add_trip(uid, name, location, start, end, invitees)
+    user_pull.add_trip(uid, name, location, start, end, invitees)
 
     return render_template('main/trip_page.html', trip_name = name)
