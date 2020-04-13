@@ -101,7 +101,7 @@ def trip_page(uid,trip_id):
     else:
         #this line here is trip info -- will be changing when attractions come in
         trip_info = user_pull.get_trip_info(uid, trip_id)
-        return render_template('main/trip_page.html', trip_id = trip_id, uid = uid)
+        return render_template('main/trip_page.html', trip_id = trip_id, uid = uid, trip_info = trip_info)
 
 @bp.route('/create_trip/', defaults = {'uid': None})
 @bp.route('/create_trip/<uid>')
@@ -134,5 +134,5 @@ def create_trip_data(uid, num_friends):
             if(user_pull.validate_invitee(p) == -1):
                 return render_template('main/create_trip.html', uid = uid, message = "Invalid invitees")
     user_pull.add_trip(uid, name, location, start, end, invitees)
-
-    return render_template('main/trip_page.html', trip_name = name)
+    trip_info = {}
+    return render_template('main/trip_page.html', uid = uid, trip_info = trip_info)
