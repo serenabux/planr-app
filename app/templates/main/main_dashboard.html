@@ -18,7 +18,7 @@
             <img src="{{ url_for('static', filename='images/new_adventure.png') }}" alt="air plane and earth">
           </div>
         </a>
-        <a href="" class="card_link">
+        <a href="{{url_for('main.create_trip', uid = uid)}}" class="card_link">
           <div class="card">
             <h2 class="margin-bottom-24">Explore Locations</h2>
             <img src="{{ url_for('static', filename='images/explore_adventure.png') }}" alt="air plane and earth">

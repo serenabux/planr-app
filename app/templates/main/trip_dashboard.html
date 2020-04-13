@@ -4,9 +4,10 @@
 <article>
     <main class="margin-top-108">
         <h1 class="centered">Upcoming Adventures</h1>
+        <div style = "display: flex;">
         <div class="row">
             {%for t in trip.Trips%}
-            <div class="column column_3 margin-bottom-24" id="{{t.trip_id}}">
+            <div class="padding-24" id="{{t.trip_id}}">
                 <div class="card margin-left-24">
                     <div class="card_link_info centered margin-bottom-24">
                         <a href="{{url_for('main.trip_page', uid = uid, trip_id = t.trip_id)}}" class="card_link">
@@ -28,8 +29,8 @@
                 </div>
             </div>
             {%endfor%}
-            <div class="column column_3 margin-bottom-24">
-                <a href="" class="add_trip card_link margin-left-24">
+            <div class="padding-24">
+                <a href="{{url_for('main.create_trip', uid = uid)}}" class="add_trip card_link margin-left-24">
                     <div>
                         <h3 class="margin-bottom-8"> New Adventure</h3>
                         <img src="{{ url_for('static', filename='images/add_trip.svg') }}" alt="add_icon" width="50px">
@@ -37,6 +38,7 @@
                 </a>
             </div>
         </div>
+    </div>
         <script type="text/javascript" src="{{ url_for('static', filename='js/delete_trip.js') }}"></script>
     </main>
 </article>
