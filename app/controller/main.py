@@ -99,6 +99,7 @@ def trip_page(uid,trip_id):
     elif(trip_id == None):
         return redirect(url_for('main.trip_dashboard', uid = uid))
     else:
+        #this line here is trip info -- will be changing when attractions come in
         trip_info = user_pull.get_trip_info(uid, trip_id)
         return render_template('main/trip_page.html', trip_id = trip_id, uid = uid)
 
