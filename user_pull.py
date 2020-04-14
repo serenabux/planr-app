@@ -123,12 +123,23 @@ def get_trip_info(uid, trip_id):
         name = ' '.join([first_name, last_name])
         members.append(name)
 
+    attractions = tripinfo[6].split(',')
+    a_list = []
+    for a in attractions:
+        d = {}
+        q_attraction = "select name from locations where loc_id = {}".format(int(a))
+        cursor.execute(q_attraction)
+        name = cursor.fetchone()[0]
+        d['name'] = name
+        a_list.append(d)
+
     ret['trip_name'] = tripinfo[1]
     ret['city'] = city
     ret['country'] = country
     ret['start'] = str(tripinfo[3])
     ret['end'] = str(tripinfo[4])
     ret['members'] = members
-    ret['selected_attractions'] = tripinfo[6]
-    ret['voting_attractions'] = tripinfo[7]
+    ret['selected_attractions'] = a_list
+    # ret['voting_attractions'] = tripinfo[7]
+
     return ret
