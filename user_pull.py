@@ -77,6 +77,11 @@ def add_trip(uid, name, location, start, end, invitees):
         cursor.execute(q_insert)
         conn.commit()
 
+    q_tripid = "select trip_id from trips where user_id = {} and tripname = '{}'".format(uid, name)
+    cursor.execute(q_tripid)
+    trip_id = cursor.fetchone()[0]
+    return trip_id
+
 def delete_trip(trip_id):
     q_delete = "delete from trips where trip_id = {}".format(trip_id)
     cursor.execute(q_delete)
@@ -113,25 +118,28 @@ def get_trip_info(uid, trip_id):
         last_name = last_name.capitalize()
         name = ' '.join([first_name, last_name])
         members.append(name)
-    mems = tripinfo[5].split(',')
-    for m in mems:
-        q_name = "select first_name, last_name from users where email = '{}'".format(m)
-        cursor.execute(q_name)
-        first_name,last_name = cursor.fetchone()
-        first_name = first_name.capitalize()
-        last_name = last_name.capitalize()
-        name = ' '.join([first_name, last_name])
-        members.append(name)
 
-    attractions = tripinfo[6].split(',')
+    if (tripinfo[5] != None):
+        mems = tripinfo[5].split(',')
+        for m in mems:
+            q_name = "select first_name, last_name from users where email = '{}'".format(m)
+            cursor.execute(q_name)
+            first_name,last_name = cursor.fetchone()
+            first_name = first_name.capitalize()
+            last_name = last_name.capitalize()
+            name = ' '.join([first_name, last_name])
+            members.append(name)
+
     a_list = []
-    for a in attractions:
-        d = {}
-        q_attraction = "select name from locations where loc_id = {}".format(int(a))
-        cursor.execute(q_attraction)
-        name = cursor.fetchone()[0]
-        d['name'] = name
-        a_list.append(d)
+    if (tripinfo[6] != None):
+        attractions = tripinfo[6].split(',')
+        for a in attractions:
+            d = {}
+            q_attraction = "select name from locations where loc_id = {}".format(int(a))
+            cursor.execute(q_attraction)
+            name = cursor.fetchone()[0]
+            d['name'] = name
+            a_list.append(d)
 
     ret['trip_name'] = tripinfo[1]
     ret['city'] = city
