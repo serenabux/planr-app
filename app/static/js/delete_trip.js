@@ -1,5 +1,5 @@
-function callDelete(trip_id){
-    fetch('/delete_trip/'+trip_id+'/')
+function callDelete(uid, trip_id){
+    fetch('/delete_trip/'+uid+'/'+trip_id+'/')
     .then(function (response) {
         return response.text();
     }).then(function (text) {
@@ -16,7 +16,7 @@ function callDelete(trip_id){
 $(".delete_button").click(function(){
 	if($(this).hasClass("confirm")){
         var trip_id = this.id.split("_")
-        callDelete(trip_id[0]);
+        callDelete(trip_id[2], trip_id[0]);
 	} else {
 		$(this).addClass("confirm");
 		$("span").text("Are you sure?");

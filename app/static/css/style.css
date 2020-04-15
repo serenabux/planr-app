@@ -597,8 +597,8 @@ font-size: 1em;
 }
 
 .card{
-  width: 100%;
-  max-width: 300px;
+  width: 300px;
+  height: 321px;
   flex: 1 0 32%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
@@ -626,15 +626,14 @@ font-size: 1em;
 
 /*Trip Dashboard*/
 .add_trip{
-  max-width: 300px;
-  width: 100%;
+  width: 300px;
+  height: 321px;
   text-align: center;
   padding: 24px;
   border-radius: 12px;
   border-style: dotted;
   border-color: var(--link-hover-color);
   color: var(--link-hover-color);
-  height: 275px;
   text-decoration: none;
   font-weight: bold;
   display: flex;
@@ -663,6 +662,7 @@ font-size: 1em;
   background: transparent;
   outline: 0;
   overflow: hidden;
+  margin-left: 24px;
 }
 
 .delete_button .icon {
