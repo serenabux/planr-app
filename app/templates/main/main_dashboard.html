@@ -7,19 +7,19 @@
       <div style="display: flex;"> 
       <div class="row">
         <a href="{{url_for('main.trip_dashboard', uid = uid)}}" class="card_link">
-          <div class="card">
+          <div class="card no_height">
             <h2 class="margin-bottom-24">Upcoming Adventures</h2>
             <img src="{{ url_for('static', filename='images/upcoming_adventure.png') }}" alt="hot air balloon over mountaines">
           </div>
         </a>
         <a href="{{url_for('main.create_trip', uid = uid)}}" class="card_link">
-          <div class="card">
+          <div class="card no_height">
             <h2 class="margin-bottom-24">New Adventure</h2>
             <img src="{{ url_for('static', filename='images/new_adventure.png') }}" alt="air plane and earth">
           </div>
         </a>
         <a href="{{url_for('main.create_trip', uid = uid)}}" class="card_link">
-          <div class="card">
+          <div class="card no_height">
             <h2 class="margin-bottom-24">Explore Locations</h2>
             <img src="{{ url_for('static', filename='images/explore_adventure.png') }}" alt="air plane and earth">
           </div>
