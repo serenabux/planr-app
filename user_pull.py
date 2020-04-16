@@ -82,10 +82,15 @@ def add_trip(uid, name, location, start, end, invitees):
     trip_id = cursor.fetchone()[0]
     return trip_id
 
-def delete_trip(trip_id):
-    q_delete = "delete from trips where trip_id = {}".format(trip_id)
-    cursor.execute(q_delete)
-    conn.commit()
+def delete_trip(uid, trip_id):
+    q_get_creatorid = "select user_id from trips where trip_id = {}".format(trip_id)
+    cursor.execute(q_get_creatorid)
+    creatorid = cursor.fetchone()[0]
+    print("cid:", creatorid)
+    print("uid:", uid)
+    # q_delete = "delete from trips where trip_id = {}".format(trip_id)
+    # cursor.execute(q_delete)
+    # conn.commit()
 
 def get_trip_info(uid, trip_id):
     uid = int(uid)

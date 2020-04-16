@@ -87,7 +87,7 @@ def delete_trip(uid,trip_id):
         #delete trip from database, return true if works, false if not
         print("Trip id: ", trip_id)
         print("use id: " , uid)
-        user_pull.delete_trip(trip_id)
+        user_pull.delete_trip(uid, trip_id)
         return "true"
 
 
