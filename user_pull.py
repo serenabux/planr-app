@@ -86,11 +86,25 @@ def delete_trip(uid, trip_id):
     q_get_creatorid = "select user_id from trips where trip_id = {}".format(trip_id)
     cursor.execute(q_get_creatorid)
     creatorid = cursor.fetchone()[0]
-    print("cid:", creatorid)
-    print("uid:", uid)
-    # q_delete = "delete from trips where trip_id = {}".format(trip_id)
-    # cursor.execute(q_delete)
-    # conn.commit()
+    if (creatorid == uid):
+        q_delete = "delete from trips where trip_id = {}".format(trip_id)
+        cursor.execute(q_delete)
+        conn.commit()
+    else:
+        q_remove = "select members from trips where trip_id = {}".format(trip_id)
+        cursor.execute(q_remove)
+        mems = cursor.fetchone()[0].split(',')
+        q_email = "select email from users where user_id = {}".format(uid)
+        cursor.execute(q_email)
+        email = cursor.fetchone()[0]
+        new_mems = []
+        for m in mems:
+            if(m != email):
+                new_mems.append(m)
+        new_mems = ','.join(new_mems)
+        q_update_mems = "update trips set members = '{}' where trip_id = {}".format(new_mems, trip_id)
+        cursor.execute(q_update_mems)
+        conn.commit()
 
 def get_trip_info(uid, trip_id):
     uid = int(uid)
