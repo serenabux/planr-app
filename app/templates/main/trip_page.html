@@ -3,7 +3,24 @@
 
 <article>
     <main class="margin-top-108">
-        {{trip_info}}
+        <div class="centered">
+            <h1>{{trip_info.trip_name}}</h1>
+            {%set start_date = trip_info.start.split("-")%}
+            {%set end_date = trip_info.end.split("-")%}
+            {%set colors = ['#52489c', '#4CB944', '#EB5160', '#F9C80E', '#F86624', '#9448BC', '#480355',  '#90FCF9', '#F79824', '#F79824', '#FDCA40', '#2176FF', '#FE4A49', '#FED766', '#07BEB8', '#C4FFF9', '#99C24D', '#F18F01', '#D72638', '#F22B29', '#F49D37', '#140F2D', '#F21B3F', '#29BF12', '#6BF178', '#FF5964', '#FFE74C', '#38618C', '#397367', '#9C95DC', '#0B7189', '#7D5BA6', '#FC6471' , '#35B1865', '#3185FC', '#ADBDFF', '#B74F6F', '#76B041', '#FF206E']%}
+            <h4>{{trip_info.city}}, {{trip_info.country}} • {{start_date[1]}}/{{start_date[2]}}/{{start_date[0]}} - {{end_date[1]}}/{{end_date[2]}}/{{end_date[0]}}</h4>
+            <div class="margin-24">
+                {%for i in trip_info.members%}
+                    {%set names = i.split(" ")%}
+                    <svg class="members" height="80" width="80">
+                        {% set c = colors|random %}
+                        <circle class="circle" cx="40" cy="40" r="30" stroke-width="3" fill="{{c}}"/>
+                        <text class="initials" x="50%" y="50%" text-anchor="middle" fill="#ffffff" dy="0.3em" font-size="24px" font-weight="black">{{names[0][0]}}{{names[1][0]}}</text> 
+                    </svg>
+                {%endfor%}
+            </div>
+        </div>
+        <h2>Attractions</h2>
     </main>
 </article>
 {% endblock %}

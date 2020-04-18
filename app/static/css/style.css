@@ -6,10 +6,11 @@
   --green: #4CA64C;
 }
 
-h1, h2, h3, h4, h5, li{
+h1, h2, h3, h5, li{
   font-family: 'Roboto', sans-serif;
   font-weight: black;
 }
+
 
 li{
   font-size: 1.5em;
@@ -26,7 +27,7 @@ p{
 }
 
 h1{
-  font-size: 3em;
+  font-size: 4rem;
 }
 
 h2{
@@ -38,6 +39,15 @@ h3{
   font-size: 1.5em;
 }
 
+h4{
+  font-weight: 200;
+  font-size: 2.25rem;
+}
+
+label {
+  font-size: 1.5rem;
+}
+
 @media (max-width: 768px){
 	h1{
     font-size: 2.5em;
@@ -45,7 +55,13 @@ h3{
   h2{
     font-size: 2em;
   }
+  h4{
+    font-size: 1.5rem;
+  }
   p{
+    font-size: 1.5em;
+  }
+  label{
     font-size: 1.5em;
   }
 
@@ -53,12 +69,18 @@ h3{
 
 @media (max-width: 420px){
   h1{
-    font-size: 2em;
-  }
-  h2{
     font-size: 1.5em;
   }
+  h2{
+    font-size: 1.25em;
+  }
+  h4{
+    font-size: 1rem;
+  }
   p{
+    font-size: 1em;
+  }
+  label{
     font-size: 1em;
   }
 }
@@ -120,6 +142,7 @@ header {
   width: 100%;
 }
 
+
 @media screen and (min-width: 800px) {
   article > main {
     max-width: 80%;
@@ -138,6 +161,7 @@ header {
 .margin-24{
   margin: 24px;
 }
+
 
 .padding-24{
   padding: 24px;
@@ -192,7 +216,6 @@ header {
 
 @media (max-width: 768px){
   .row{
-    flex-direction: column;
     width: 100%;
   }
 
@@ -516,12 +539,13 @@ margin-right: 100px;
   display: block;
   padding: 5px;
   margin-bottom: 20px;
+  margin-top: 8px;
   width: 100%;
 }
 
 .sign_up_label{
   display: block;
-  margin-bottom: 12;
+  margin-bottom: 12px;
 }
 
 
@@ -529,9 +553,17 @@ margin-right: 100px;
   background: #39b8ea;
   border-radius: 10px;
   padding: 10px;
-font-size: 1em;
+  font-size: 1.5rem;
   font-weight: bold;
-  width: 100%;
+  width: 50%;
+  min-width: 100px;
+}
+
+@media (max-width: 420px){
+  .sign_up_button{
+    font-size: 1rem;
+  }
+  
 }
 
 .smallText{
@@ -564,7 +596,6 @@ font-size: 1em;
 .sign_up_header{
   margin-bottom: 24px;
 }
-
 
 @media (max-width: 768px){
 	.sign_up_image{
@@ -820,7 +851,7 @@ font-size: 1em;
 
 /*Create Trip*/
 .create_trip_container{
-  padding: 2% 15%;
+  padding: 0 15%;
 }
 
 .add_button{
@@ -833,8 +864,16 @@ font-size: 1em;
   box-shadow: none;
   display: inline;
   margin-left: 12px;
-  height: 32px;
+  height: 41px;
   margin-left: 24px;
+  margin-top: 8px;
+}
+
+@media (max-width: 420px){
+  .add_button{
+    height: 32px;
+    margin-left: 8px;
+  }
 }
 
 select.minimal {
@@ -873,6 +912,12 @@ select.minimal {
 
 .required{
   color: red;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*Settings Button*/
@@ -930,3 +975,26 @@ select.minimal {
 .show {display:block;}
 
 .hidden{display:none;}
+
+/*Trip Page*/
+@media (max-width: 768px){
+
+}
+
+@media (max-width: 420px){
+  .circle{
+    transform:scale(0.8, 0.8);
+  }
+  .members{
+    width: 60px;
+    height:60px;
+  }
+
+  .initials{
+    font-size: 16px;
+    transform: translate(0.2em, 0.2em);
+  }
+
+}
+
+

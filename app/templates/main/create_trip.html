@@ -3,10 +3,10 @@
 
 
 <article>
-    <main class="margin-top-108">
+    <main class="margin-top-108"> 
         <div class="create_trip_container">
-        <h2 class="centered margin-bottom-24">Create a New Adventure!</h2>
-        <h5 align="center">{{message}}</h5>
+        <h1 class="centered margin-bottom-24">Create a New Adventure!</h1>
+        <h5 class="centered">{{message}}</h5>
         <form method="post" id="create_trip_form" action="/create_trip_data/{{uid}}/0">
             <label>
                 Adventure Name <span title="This field is mandatory" aria-label="required" class="required">*</span>
@@ -43,7 +43,9 @@
                         </div>
                     </div>
                 </label>
-            <button type="submit" class="sign_up_button">Create!</button>
+                <div class="wrapper">
+                    <button type="submit" class="sign_up_button">Create!</button>
+                </div>
         </form>
         <p class="error"></p>
         </div>
