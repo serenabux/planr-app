@@ -198,7 +198,7 @@ header {
 }
 
 .row{
-  align-items: center;
+  align-items: baseline;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1016,4 +1016,12 @@ margin-right: 100px;
 .tooltip:hover  .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+/*Explore*/
+.explore_dropdown{
+  max-width: 400px;
+  width: 50%;
+  margin-left: 24px;
+  font-size: 1.5em;
 }

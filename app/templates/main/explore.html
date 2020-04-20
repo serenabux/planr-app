@@ -1,0 +1,30 @@
+{% extends "layout2.html" %}
+{% block main %}
+<article>
+    <main class="margin-top-108">
+        
+            {%if city and country%}
+            <a href="{{url_for('main.trip_page', uid = uid, trip_id = trip_id)}}">
+                ← Return To {{trip_name}} Dashboard
+            </a>
+            <div class="centered">
+                <h1>Explore {{city}}, {{country}}</h1>
+            </div>
+            {%else%}
+            <div class="centered">
+                <h1>Explore!</h1>
+                <div class="row">
+                    <label for='trip_destination'>Destination</label>
+                    <select class="form_field minimal explore_dropdown" name='trip_destination'>
+                        <option value="Paris, France">Paris, France</option>
+                        <option value="Sydney, Australia">Sydney, Australia</option>
+                        <option value="Barcelona, Spain">Barcelona, Spain</option>
+                        <option value="Bangkok, Thailand">Bangkok, Thailand</option>
+                    </select>
+                </div>
+            </div>
+            {%endif%}
+
+    </main>
+</article>
+{% endblock %}

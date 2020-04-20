@@ -133,4 +133,13 @@ def create_trip_data(uid, num_friends):
                 return render_template('main/create_trip.html', uid = uid, message = "Invalid invitees")
     trip_id = user_pull.add_trip(uid, name, location, start, end, invitees)
     trip_info = user_pull.get_trip_info(uid, trip_id)
-    return render_template('main/trip_page.html', uid = uid, trip_info = trip_info)
+    return render_template('main/trip_page.html', uid = uid, trip_info = trip_info, trip_id = trip_id)
+
+@bp.route('/explore/', defaults = {'uid': None, 'trip_id': None, 'trip_name': None, 'city': None, 'country': None})
+@bp.route('/explore/<uid>/', defaults = {'trip_id': None, 'trip_name': None, 'city': None, 'country': None})
+@bp.route('/explore/<uid>/<trip_id>/<trip_name>/<city>/<country>')
+def explore(uid,trip_id, trip_name, city, country):
+    if(uid == None):
+        return redirect(url_for('main.sign_in_page'))
+    else:
+        return render_template('main/explore.html', uid = uid, trip_id = trip_id, trip_name = trip_name, city = city, country = country)

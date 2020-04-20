@@ -10,13 +10,13 @@
           <div class="toggle_button_line"></div>
       </button> 
       <div>
-          <a href="{{url_for('main.main_dashboard', uid = uid)}}"><img class="landingHeading_logo"src="../../images/logoWhite.png"/></a>
+          <a href="{{url_for('main.main_dashboard', uid = uid)}}"><img class="landingHeading_logo"src="{{ url_for('static', filename='images/logoWhite.png') }}"/></a>
       </div>
       <div class="spacer"></div>
       <ul class="landingHeading_ul">
         <li class="landingHeading_li"><a href="{{url_for('main.trip_dashboard', uid = uid)}}" class="navLinks">Upcoming</a></li>
         <li class="landingHeading_li"><a href="{{url_for('main.create_trip', uid = uid)}}" class="navLinks">New Adventure</a></li> 
-        <li class="landingHeading_li"><a href="{{url_for('main.main_dashboard', uid = uid)}}" class="navLinks">Explore</a></li> 
+        <li class="landingHeading_li"><a href="{{url_for('main.explore', uid = uid)}}"class="navLinks">Explore</a></li> 
         <li class="landingHeading_li"><button onclick="toggle_settings_dropdown()" class="dropbtn">&#9881;</button></li>
         <div class="dropdown-content dropdown_content_offset hidden">
           <a href="{{url_for('main.index')}}">Sign Out</a>
@@ -33,9 +33,9 @@
       <img class="side_drawer_logo" src="../../images/logoBlue.png" />
   </div>
   <ul class="side_drawer_ul">
-      <li class="side_drawer_list"><a class="side_drawer_navLink" href="#boxes">Upcoming</a></li>
-      <li class="side_drawer_list"><a class="side_drawer_navLink" href="#about">New Adventure</a></li>
-      <li class="side_drawer_list"><a class="side_drawer_navLink" href="#">Explore</a></li>
+      <li class="side_drawer_list"><a class="side_drawer_navLink" href="{{url_for('main.trip_dashboard', uid = uid)}}">Upcoming</a></li>
+      <li class="side_drawer_list"><a class="side_drawer_navLink" href="{{url_for('main.create_trip', uid = uid)}}">New Adventure</a></li>
+      <li class="side_drawer_list"><a class="side_drawer_navLink" href="{{url_for('main.explore', uid = uid)}}">Explore</a></li>
       <li class="side_drawer_list"><button onclick="toggle_settings_dropdown()" class="dropbtn_side">&#9881; Settings <i class="fa fa-caret-down"></i></button></li>
       <div class="dropdown-content hidden">
         <a href="{{url_for('main.index')}}">Sign Out</a>
