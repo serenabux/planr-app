@@ -162,6 +162,9 @@ header {
   margin: 24px;
 }
 
+.margin-auto{
+  margin: auto;
+}
 
 .padding-24{
   padding: 24px;
@@ -198,12 +201,10 @@ header {
 }
 
 .row{
-  align-items: baseline;
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: auto;
-
 }
 
 .column {
@@ -217,6 +218,7 @@ header {
 @media (max-width: 768px){
   .row{
     width: 100%;
+    margin: auto;
   }
 
   .column > .margin-left-24{
@@ -335,9 +337,10 @@ header {
 }
 
 .side_drawer_navLink{
-  color: #39b8ea;
+  color: var(--text-color);
   font-weight: bold;
   text-decoration: none;
+  font-size: 1em;
 } 
 
 .side_drawer{
@@ -916,7 +919,7 @@ margin-right: 100px;
 .dropbtn_side{
   background-color: var(--secondary-primary-color);
   border-color: var(--secondary-primary-color);
-  color: var(--primary-color);
+  color: var(--text-color);
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -961,10 +964,6 @@ margin-right: 100px;
 .hidden{display:none;}
 
 /*Trip Page*/
-@media (max-width: 768px){
-
-}
-
 @media (max-width: 420px){
   .circle{
     transform:scale(0.8, 0.8);
@@ -985,38 +984,20 @@ margin-right: 100px;
   margin-left: 48px;
 }
 
-.tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
-  opacity: 0;
-  transition: opacity 0.3s;
+@media (max-width: 768px){
+  .side_heading{
+    margin: auto;
+    text-align: center;
+  }
 }
 
-.tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+#tooltip {
+  background: var(--secondary-primary-color);
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
+  padding: 5px;
 }
 
-.tooltip:hover  .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
 
 /*Explore*/
 .explore_dropdown{
@@ -1024,4 +1005,25 @@ margin-right: 100px;
   width: 50%;
   margin-left: 24px;
   font-size: 1.5em;
+  padding: 8px;
+}
+
+.explore_row{
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 768px){
+  .explore_dropdown{
+    width: 100%;
+    margin: auto;
+    margin-top: 12px;
+    font-size: 1em;
+  }
+  
+  .explore_row{
+    display: block;
+  }
 }

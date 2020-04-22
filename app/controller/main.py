@@ -142,4 +142,32 @@ def explore(uid,trip_id, trip_name, city, country):
     if(uid == None):
         return redirect(url_for('main.sign_in_page'))
     else:
-        return render_template('main/explore.html', uid = uid, trip_id = trip_id, trip_name = trip_name, city = city, country = country)
+        #If city and country exists then query for that location 
+        #Otherwise query for Paris, France it is the default
+        #If possible also return any trip ids and trip name that have the location Paris, France 
+        return render_template('main/explore.html', uid = uid, trip_id = trip_id, trip_name = trip_name, city = city, country = country, attractions = [])
+
+@bp.route('/explore_new/<uid>/<city>/<country>/')
+@bp.route('/explore_new/', defaults = {'uid': None, 'city': None, 'country': None})
+@bp.route('/explore_new/<uid>', defaults = {'city': None, 'country': None})
+def explore_new(uid, city, country):
+    if(uid == None):
+        return redirect(url_for('main.sign_in_page'))
+    elif(city == None or country == None):
+        return redirect(url_for('main.explore', uid = uid))
+    else:
+        #Query for the location and return a list of attractions
+        #If possible return any trip_ids and trip names that correspond to the given location 
+        return "test"
+
+@bp.route('/add_attraction/<uid>/<trip_id>/<attraction_id>')
+@bp.route('/add_attractions/', defaults = {'uid': None, 'trip_id': None, 'attraction_id': None})
+@bp.route('/add_attractions/<uid>', defaults = {'trip_id': None, 'attraction_id': None})
+def add_attraction(uid, trip_id):
+    if(uid == None):
+        return redirect(url_for('main.sign_in_page'))
+    elif(trip_id == None or attraction_id == None):
+        return "false"
+    else:
+        #Add attraction to the trip return true if sucessful, false if not
+        return "true"

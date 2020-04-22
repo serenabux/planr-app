@@ -13,9 +13,9 @@
             {%else%}
             <div class="centered">
                 <h1>Explore!</h1>
-                <div class="row">
+                <div class="explore_row">
                     <label for='trip_destination'>Destination</label>
-                    <select class="form_field minimal explore_dropdown" name='trip_destination'>
+                    <select class="form_field minimal explore_dropdown" name='trip_destination' onchange="changeExploreLocation({{uid}})">
                         <option value="Paris, France">Paris, France</option>
                         <option value="Sydney, Australia">Sydney, Australia</option>
                         <option value="Barcelona, Spain">Barcelona, Spain</option>
@@ -24,7 +24,19 @@
                 </div>
             </div>
             {%endif%}
+            {%if attractions%}
+            <div class="row">
+                <div class="padding-24">
+                    <div class="card">
 
+                    </div>
+                </div>
+            </div>
+            {%else%}
+            <div class="padding-24">
+                <p class="centered">Hmm.... It looks like we couldn't load the attractions for this location right now. </p>
+            </div>
+            {%endif%}
     </main>
 </article>
 {% endblock %}

@@ -12,11 +12,11 @@
             <div class="margin-24">
                 {%for i in trip_info.members%}
                     {%set names = i.split(" ")%}
-                    <svg class="tooltip members" height="80" width="80">
+                    <svg class="members" height="80" width="80">
                         {% set c = colors|random %}
                         <circle class="circle" cx="40" cy="40" r="30" stroke-width="3" fill="{{c}}"/>
-                        <text class="initials" x="50%" y="50%" text-anchor="middle" fill="#ffffff" dy="0.3em" font-size="24px" font-weight="black">{{names[0][0]}}{{names[1][0]}}</text> 
-                        <span class="tooltiptext">Tooltip text</span>
+                        <text class="initials" x="50%" y="50%" text-anchor="middle" fill="#ffffff" dy="0.3em" font-size="24px" font-weight="black">{{names[0][0]}}{{names[1][0]}}</text>
+                        <title>{{i}}</title>
                     </svg>
                 {%endfor%}
             </div>
@@ -25,6 +25,7 @@
         <div style = "display: flex;">
             <div class="row">
                 {%for a in trip_info.selected_attractions%}
+                <!-- <p>{{a}}</p> -->
                     <div class="padding-24">
                     <div class="card">
                         {%if a.image%}
