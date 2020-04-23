@@ -2,6 +2,7 @@ from passlib.context import CryptContext
 import psycopg2
 import sys
 import DB_manager
+import random
 
 def create_user(email, first_name, last_name, password1, password2):
 	# print(user)
@@ -31,7 +32,8 @@ def create_user(email, first_name, last_name, password1, password2):
 										default = "pbkdf2_sha256",
 										pbkdf2_sha256__default_rounds=30000)
 			hashed_pw = pwd_context.encrypt(password2)
-			query_insert = "insert into users (email, first_name, last_name, date_created, password) VALUES ('{}', '{}', '{}', CURRENT_DATE,'{}')".format(email, first_name, last_name, hashed_pw)	
+			hex_num = "#{:06x}".format(random.randint(0,0xFFFFFF))
+			query_insert = "insert into users (email, first_name, last_name, date_created, password, color) VALUES ('{}', '{}', '{}', CURRENT_DATE,'{}', '{}')".format(email, first_name, last_name, hashed_pw, hex_num)	
 		
 			cursor.execute(query_insert)
 		else:

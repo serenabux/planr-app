@@ -122,21 +122,23 @@ def get_trip_info(uid, trip_id):
 
     members = []
     if (tripinfo[0] == uid):
-        q_name = "select first_name, last_name from users where user_id = {}".format(uid)
+        q_name = "select first_name, last_name, color from users where user_id = {}".format(uid)
         cursor.execute(q_name)
-        first_name,last_name = cursor.fetchone()
+        first_name,last_name, color = cursor.fetchone()
         first_name = first_name.capitalize()
         last_name = last_name.capitalize()
         name = ' '.join([first_name, last_name])
-        members.append(name)
+        d = {"name": name, "color": color}
+        members.append(d)
     else:
-        q_name = "select first_name, last_name from users where user_id = {}".format(tripinfo[0])
+        q_name = "select first_name, last_name, color from users where user_id = {}".format(tripinfo[0])
         cursor.execute(q_name)
-        first_name,last_name = cursor.fetchone()
+        first_name,last_name, color = cursor.fetchone()
         first_name = first_name.capitalize()
         last_name = last_name.capitalize()
         name = ' '.join([first_name, last_name])
-        members.append(name)
+        d = {"name": name, "color": color}
+        members.append(d)
 
     if (tripinfo[5] != None):
         mems = tripinfo[5].split(',')
@@ -154,10 +156,11 @@ def get_trip_info(uid, trip_id):
         attractions = tripinfo[6].split(',')
         for a in attractions:
             d = {}
-            q_attraction = "select name from locations where loc_id = {}".format(int(a))
+            q_attraction = "select name, photo_link from locations where loc_id = {}".format(int(a))
             cursor.execute(q_attraction)
-            name = cursor.fetchone()[0]
+            name, photo_link = cursor.fetchone()
             d['name'] = name
+            d['photo_link'] = photo_link
             a_list.append(d)
 
     ret['trip_name'] = tripinfo[1]
