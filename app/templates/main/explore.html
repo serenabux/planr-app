@@ -3,7 +3,7 @@
 <article>
     <main class="margin-top-108">
         
-            {%if city and country%}
+            {%if trip_id%}
             <a href="{{url_for('main.trip_page', uid = uid, trip_id = trip_id)}}">
                 ← Return To {{trip_name}} Dashboard
             </a>
@@ -25,12 +25,27 @@
             </div>
             {%endif%}
             {%if attractions%}
-            <div class="row">
+            <div id="attractions" class="row">
+                {%for a in attractions%}
                 <div class="padding-24">
-                    <div class="card">
-
+                    <div class="card_link_info">
+                        <a href="{{a.website}}" class="card_link" target="_blank">
+                            <div class="card">
+                                {%if a.photo_link%}
+                                    <!-- <div id="attraction_{{i}}"></div> -->
+                                    <!-- <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{a.photo_link}}&key={{config['api_key']}}"> -->
+                                    <img src="{{ url_for('static', filename='images/airplane.png') }}"> 
+                                {%else%}
+                                    <img src="{{ url_for('static', filename='images/airplane.png') }}" alt="plane">
+                                {%endif%}
+                                <div class="padding-24">
+                                    <h3 class="centered">{{a.name}}</h3>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
+            {%endfor%}
             </div>
             {%else%}
             <div class="padding-24">
