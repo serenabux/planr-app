@@ -158,6 +158,7 @@ def explore_new(uid, city, country):
     else:
         #Query for the location and return a list of attractions
         #If possible return any trip_ids and trip names that correspond to the given location 
+        attractions_list, trip_list = user_pull.get_attractions(city, country, uid)
         return "test"
 
 @bp.route('/add_attraction/<uid>/<trip_id>/<attraction_id>')

@@ -156,11 +156,12 @@ def get_trip_info(uid, trip_id):
         attractions = tripinfo[6].split(',')
         for a in attractions:
             d = {}
-            q_attraction = "select name, photo_link from locations where loc_id = {}".format(int(a))
+            q_attraction = "select name, photo_link, website from locations where loc_id = {}".format(int(a))
             cursor.execute(q_attraction)
-            name, photo_link = cursor.fetchone()
+            name, photo_link, website = cursor.fetchone()
             d['name'] = name
             d['photo_link'] = photo_link
+            d['website'] = website
             a_list.append(d)
 
     ret['trip_name'] = tripinfo[1]
@@ -173,3 +174,43 @@ def get_trip_info(uid, trip_id):
     # ret['voting_attractions'] = tripinfo[7]
 
     return ret
+
+def get_destinations():
+    q_dest = "select city, country from destinations"
+    cursor.execute(q_dest)
+    dests = cursor.fetchall()
+    final_dests = []
+    for city, country in dests:
+        place = city + ', ' + country
+        final_dests.append(place)
+    return final_dests
+    
+def get_attractions(city, country, uid):
+    q_att = "select name, photo_link, website from locations where city = '{}' and country = '{}'".format(city, country)
+    cursor.execute(q_att)
+    attractions = cursor.fetchall()
+    att_list = []
+    for name, photo_link, website in attractions:
+        d = {}
+        d["name"] = name
+        d["photo_link"] = photo_link
+        d["website"] = website
+        att_list.append(d)
+
+    q_email = "select email from users where user_id = {}".format(uid)
+    cursor.execute(q_email)
+    email = cursor.fetchone()[0]
+    q_destid = "select dest_id from destinations where city = '{}' and country = '{}'".format(city, country)
+    cursor.execute(q_destid)
+    locid = cursor.fetchone()[0]
+    q_trips = "select trip_id, tripname from trips where loc_id = {} and (user_id  = {} or members like '%{}%')".format(locid, uid, email)
+    cursor.execute(q_trips)
+    trips = cursor.fetchall()
+    trip_list = []
+    for trip_id, tripname in trips:
+        d = {}
+        d["trip_id"] = trip_id
+        d["tripname"] = tripname
+        trip_list.append(d)
+
+    return att_list, trip_list
