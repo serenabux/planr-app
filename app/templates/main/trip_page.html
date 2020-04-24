@@ -23,19 +23,26 @@
         <h2 class="side_heading">Attractions</h2>
         <div style = "display: flex;">
             <div class="row">
+                {%set i = 0%}
                 {%for a in trip_info.selected_attractions%}
-                <!-- <p>{{a}}</p> -->
+                    {%set i = i + 1%}
                     <div class="padding-24">
-                    <div class="card">
-                        {%if a.image%}
-                            <img src="images/airplane.png">
-                        {%else%}
-                            <img src="{{ url_for('static', filename='images/airplane.png') }}" alt="plane">
-                        {%endif%}
-                        <div class="padding-24">
-                            <h3 class="centered">{{a.name}}</h3>
+                        <div class="card_link_info">
+                            <a href="{{a.website}}" class="card_link" target="_blank">
+                                <div class="card">
+                                    {%if a.photo_link%}
+                                        <!-- <div id="attraction_{{i}}"></div> -->
+                                        <!-- <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{a.photo_link}}&key={{config['api_key']}}"> -->
+                                        <img src="{{ url_for('static', filename='images/airplane.png') }}"> 
+                                    {%else%}
+                                        <img src="{{ url_for('static', filename='images/airplane.png') }}" alt="plane">
+                                    {%endif%}
+                                    <div class="padding-24">
+                                        <h3 class="centered">{{a.name}}</h3>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
                     </div>
                 {%endfor%}
                 <div>

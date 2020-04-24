@@ -20,3 +20,13 @@ function addAttraction(uid, trip_id){
         console.log(text);
     });
 }
+
+
+
+
+function setImage(ref, i){
+    console.log("test!")
+    var API_KEY = process.env.API_KEY;
+ var photoUrl = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=' + ref + 'key=' +API_KEY;
+    document.getElementById("attraction_" + i).innerHTML = '<p>Test</p>';
+}
