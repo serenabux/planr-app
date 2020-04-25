@@ -1,6 +1,7 @@
 function changeExploreLocation(uid){
     var location = document.getElementsByName('trip_destination')[0].value;
     var l = location.split(", ")
+    console.log(location)
     fetch('/explore_new/'+uid+'/'+l[0]+'/'+l[1]+"/")
     .then(function (response) {
         return response.json();
@@ -9,14 +10,16 @@ function changeExploreLocation(uid){
         // var data = JSON.parse(json);
         var attractions = json.attractions;
         var attractions_code = "";
+        var photo_refs = [];
         for (var i=0; i < attractions.length; i++){
+            photo_refs.push(attractions[i].photo_link.substring(attractions[i].photo_link.length - 10));
             attractions_code += `
                 <div class="padding-24">
                     <div class="card_link_info">
                         <a href="`+ attractions[i].website + `" class="card_link" target="_blank">
                             <div class="card">`;
                                 if (attractions[i].photo_link){
-                                    attractions_code += `<img src="/images/airplane.png">`
+                                    attractions_code += "<img src='/images/"+attractions[i].photo_link.substring(attractions[i].photo_link.length - 10)+".jpg'>"
                                 } else{
                                     attractions_code += `<img src="/images/airplane.png" alt="plane">`
                                 }
@@ -30,6 +33,7 @@ function changeExploreLocation(uid){
                 </div>
             `
         }
+        console.log(photo_refs)
         document.getElementById("attractions").innerHTML = attractions_code; 
     });
 }

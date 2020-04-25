@@ -33,8 +33,10 @@
                             <div class="card">
                                 {%if a.photo_link%}
                                     <!-- <div id="attraction_{{i}}"></div> -->
+                                    {%set src=a.photo_link[-10:]%}
+                                    <img src="/images/{{src}}.jpg" alt="{{a.name}}">
                                     <!-- <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{a.photo_link}}&key={{config['api_key']}}"> -->
-                                    <img src="{{ url_for('static', filename='images/airplane.png') }}"> 
+                                    <!-- <img src="{{ url_for('static', filename='images/airplane.png') }}">  -->
                                 {%else%}
                                     <img src="{{ url_for('static', filename='images/airplane.png') }}" alt="plane">
                                 {%endif%}
