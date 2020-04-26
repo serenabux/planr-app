@@ -147,7 +147,7 @@ def explore(uid,trip_id, trip_name, city, country):
         #Otherwise query for Paris, France it is the default
         #If possible also return any trip ids and trip name that have the location Paris, France 
         attractions_list, trip_list = user_pull.get_attractions(city, country, uid)
-        return render_template('main/explore.html', uid = uid, trip_id = trip_id, trip_name = trip_name, city = city, country = country, attractions = attractions_list)
+        return render_template('main/explore.html', uid = uid, trip_id = trip_id, trip_name = trip_name, city = city, country = country, attractions = attractions_list, trip_list = trip_list)
 
 @bp.route('/explore_new/<uid>/<city>/<country>/')
 @bp.route('/explore_new/', defaults = {'uid': None, 'city': None, 'country': None})
@@ -164,14 +164,14 @@ def explore_new(uid, city, country):
         explore_data = {"attractions": attractions_list, "trip_list": trip_list}
         return jsonify(explore_data)
 
-@bp.route('/add_attraction/<uid>/<trip_id>/<attraction_id>')
-@bp.route('/add_attractions/', defaults = {'uid': None, 'trip_id': None, 'attraction_id': None})
-@bp.route('/add_attractions/<uid>', defaults = {'trip_id': None, 'attraction_id': None})
-def add_attraction(uid, trip_id):
+@bp.route('/add_attraction/<uid>/<trip_id>/<attraction_name>/')
+@bp.route('/add_attraction/', defaults = {'uid': None, 'trip_id': None, 'attraction_name': None})
+@bp.route('/add_attraction/<uid>', defaults = {'trip_id': None, 'attraction_name': None})
+def add_attraction(uid, trip_id, attraction_name):
     if(uid == None):
         return redirect(url_for('main.sign_in_page'))
-    elif(trip_id == None or attraction_id == None):
+    elif(trip_id == None or attraction_name == None):
         return "false"
     else:
-        #Add attraction to the trip return true if sucessful, false if not
+        #Add attraction to the trip return true if sucessful, false if no
         return "true"

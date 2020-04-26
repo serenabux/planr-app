@@ -31,9 +31,8 @@
                             <a href="{{a.website}}" class="card_link" target="_blank">
                                 <div class="card">
                                     {%if a.photo_link%}
-                                        <!-- <div id="attraction_{{i}}"></div> -->
-                                        <!-- <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{a.photo_link}}&key={{config['api_key']}}"> -->
-                                        <img src="{{ url_for('static', filename='images/airplane.png') }}"> 
+                                    {%set src=a.photo_link[-10:]%}
+                                        <img class="attraction_image" src="/images/attraction/{{src}}.jpg" alt="{{a.name}}">
                                     {%else%}
                                         <img src="{{ url_for('static', filename='images/airplane.png') }}" alt="plane">
                                     {%endif%}

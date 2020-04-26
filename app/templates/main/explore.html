@@ -25,28 +25,72 @@
             </div>
             {%endif%}
             {%if attractions%}
+            {%set i = 0%}
             <div id="attractions" class="row">
                 {%for a in attractions%}
                 <div class="padding-24">
-                    <div class="card_link_info">
-                        <a href="{{a.website}}" class="card_link" target="_blank">
-                            <div class="card">
+                    <div class="card">
+                        <div class="card_link_info">
+                            <a href="{{a.website}}" class="card_link" target="_blank">
                                 {%if a.photo_link%}
-                                    <!-- <div id="attraction_{{i}}"></div> -->
                                     {%set src=a.photo_link[-10:]%}
-                                    <img src="/images/{{src}}.jpg" alt="{{a.name}}">
-                                    <!-- <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={{a.photo_link}}&key={{config['api_key']}}"> -->
-                                    <!-- <img src="{{ url_for('static', filename='images/airplane.png') }}">  -->
+                                    <img class="attraction_image" src="/images/attraction/{{src}}.jpg" alt="{{a.name}}">
                                 {%else%}
                                     <img src="{{ url_for('static', filename='images/airplane.png') }}" alt="plane">
                                 {%endif%}
                                 <div class="padding-24">
                                     <h3 class="centered">{{a.name}}</h3>
                                 </div>
+                            </a>
+                        </div>
+                        {%if trip_id == None and trip_list|length > 1%}
+                        <div class="add_container">
+                            <button class='add_button'>
+                                <div class='icon centered'>
+                                    <i class='fa fa-plus'></i>
+                                    <i class='fa fa-check'></i>
+                                </div>
+                                <div class='text'>
+                                    <span>Add to</span>
+                                </div>
+                            </button>
+                            <div class="add_dropdown_content">
+                                {%for t in trip_list%}
+                            <button onclick="addAttraction({{uid}},{{t.trip_id}},'{{a.name}}', {{i}});">{{t.tripname}}</button> 
+                                {%endfor%}
                             </div>
-                        </a>
+                        </div>
+                        {%elif trip_id or trip_list|length == 1%}
+                        <div class="add_container">
+                            <button class='add_button' onclick="addAttraction({{uid}},{{trip_list.trip_id}},'{{a.name}}', {{i}})">
+                                <div class='icon centered'>
+                                    <i class='fa fa-plus'></i>
+                                    <i class='fa fa-check'></i>
+                                </div>
+                                <div class='text'>
+                                    {%if trip_id%}
+                                    <span>Add to {{trip_name}}</span>
+                                    {%else%}
+                                    <span>Add to {{trip_list[0].tripname}}</span>
+                                    {%endif%}
+                                </div>
+                            </button>
+                        </div>
+                        {%else%}
+                        <div class="add_container">
+                            <button class='add_button'>
+                                <div class='icon centered'>
+                                    <i class='fa fa-plus'></i>
+                                </div>
+                                <div class='text'>
+                                    <span>No upcoming trips</span>
+                                </div>
+                            </button>
+                        </div>
+                        {%endif%}
                     </div>
                 </div>
+                {%set i = i + 1%}
             {%endfor%}
             </div>
             {%else%}

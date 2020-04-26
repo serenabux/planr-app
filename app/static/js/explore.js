@@ -15,11 +15,11 @@ function changeExploreLocation(uid){
             photo_refs.push(attractions[i].photo_link.substring(attractions[i].photo_link.length - 10));
             attractions_code += `
                 <div class="padding-24">
-                    <div class="card_link_info">
-                        <a href="`+ attractions[i].website + `" class="card_link" target="_blank">
-                            <div class="card">`;
+                    <div class="card">
+                        <div class="card_link_info">
+                            <a href="`+ attractions[i].website + `" class="card_link" target="_blank">`;
                                 if (attractions[i].photo_link){
-                                    attractions_code += "<img src='/images/"+attractions[i].photo_link.substring(attractions[i].photo_link.length - 10)+".jpg'>"
+                                    attractions_code += "<img class='attraction_image' src='/images/attraction/"+attractions[i].photo_link.substring(attractions[i].photo_link.length - 10)+".jpg'>"
                                 } else{
                                     attractions_code += `<img src="/images/airplane.png" alt="plane">`
                                 }
@@ -27,8 +27,56 @@ function changeExploreLocation(uid){
                                 <div class="padding-24">
                                     <h3 class="centered">` + attractions[i].name + `</h3>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>`
+                        if (json.trip_list.length > 1){
+                        attractions_code += 
+                        `<div class="add_container">
+                            <button class='add_button'>
+                                <div class='icon centered'>
+                                    <i class='fa fa-check'></i>
+                                </div>
+                                <div class='text'>
+                                    <span>Add to</span>
+                                </div>
+                            </button>
+                            <div class="add_dropdown_content">`;
+                                for (var t = 0; t < json.trip_list.length ; t++){
+                                    attractions_code += "<button onclick='addAttraction(" + uid + "," + t.trip_id+ ",'" + attractions[i].name + "'," + i + ")'>" + json.trip_list[t].tripname + "</button>";
+                                }
+                            attractions_code += 
+                            `</div>
+                        </div>`
+                        }
+                        else if (json.trip_list.length == 1){
+                        attractions_code += 
+                        `<div class="add_container">
+                            <button class='add_button' onclick="addAttraction(` + uid + "," + json.trip_list[0].trip_id + ",'" + attractions[i].name + "'," + i + `)">
+                                <div class='icon centered'>
+                                    <i class='fa fa-plus'></i>
+                                    <i class='fa fa-check'></i>
+                                </div>
+                                <div class='text'>
+                                    <span>Add to ` + json.trip_list[0].tripname + `</span>
+                                </div>
+                            </button>
+                        </div>`
+                        }
+                        else{
+                        attractions_code += 
+                        `<div class="add_container">
+                            <button class='add_button'>
+                                <div class='icon centered'>
+                                    <i class='fa fa-plus'></i>
+                                </div>
+                                <div class='text'>
+                                    <span>No upcoming trips</span>
+                                </div>
+                            </button>
+                        </div>`
+                        }
+                    attractions_code += `
+                    </div>
                     </div>
                 </div>
             `
@@ -38,22 +86,24 @@ function changeExploreLocation(uid){
     });
 }
 
-function addAttraction(uid, trip_id){
-    fetch('/add_attraction/'+uid+'/'+trip_id+"/")
+
+
+//Add Attractions 
+
+function addAttraction(uid, trip_id, attraction_name, attraction_number){
+    fetch('/add_attraction/'+uid+'/'+trip_id+"/" + attraction_name + "/")
     .then(function (response) {
         return response.text();
     }).then(function (text) {
         //Change the added button to "Added!"
-        console.log(text);
+        if("true"){
+            document.getElementsByClassName("add_button")[attraction_number].classList.add("done")
+            document.getElementsByClassName("text")[attraction_number].innerHTML = "Added"
+            if(document.getElementsByClassName("add_dropdown_content")){
+                document.getElementsByClassName("add_dropdown_content")[0].style.display = "none";
+            }
+        }
     });
 }
 
 
-
-
-function setImage(ref, i){
-    console.log("test!")
-    var API_KEY = process.env.API_KEY;
- var photoUrl = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=' + ref + 'key=' +API_KEY;
-    document.getElementById("attraction_" + i).innerHTML = '<p>Test</p>';
-}
