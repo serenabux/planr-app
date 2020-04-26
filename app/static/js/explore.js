@@ -34,6 +34,7 @@ function changeExploreLocation(uid){
                         `<div class="add_container">
                             <button class='add_button'>
                                 <div class='icon centered'>
+                                    <i class='fa fa-plus'></i>
                                     <i class='fa fa-check'></i>
                                 </div>
                                 <div class='text'>
@@ -99,11 +100,18 @@ function addAttraction(uid, trip_id, attraction_name, attraction_number){
         if("true"){
             document.getElementsByClassName("add_button")[attraction_number].classList.add("done")
             document.getElementsByClassName("text")[attraction_number].innerHTML = "Added"
-            if(document.getElementsByClassName("add_dropdown_content")){
-                document.getElementsByClassName("add_dropdown_content")[0].style.display = "none";
-            }
+            setTimeout(() => {
+                document.getElementsByClassName("add_button")[attraction_number].classList.remove("done")
+                document.getElementsByClassName("text")[attraction_number].innerHTML = "Add To"
+            }, 3000);
         }
     });
+}
+
+function added(attraction_number){
+    document.getElementsByClassName("add_button")[attraction_number].classList.remove("done")
+    document.getElementsByClassName("text")[attraction_number].innerHTML = "Add To"
+    
 }
 
 

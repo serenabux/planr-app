@@ -923,6 +923,7 @@ margin-right: 100px;
   background-color: var(--secondary-primary-color);
   border-color: var(--secondary-primary-color);
   color: var(--text-color);
+  border: none;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -1057,7 +1058,7 @@ margin-right: 100px;
   background: transparent;
   outline: 0;
   overflow: hidden;
-  margin-left: 24px;
+  margin-left: 12px;
 }
 
 .add_button .icon {
@@ -1170,9 +1171,16 @@ margin-right: 100px;
   width: 150px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  margin-left: 64px;
+  margin-left: 52px;
   margin-top: -5px;
 }
+
+@media (max-width: 768px){
+  .add_dropdown_content{
+    margin-top: 0px;
+  }
+}
+
 
 .add_dropdown_content button{
   float: none;
@@ -1180,7 +1188,7 @@ margin-right: 100px;
   padding: 0px 12px;
   display: block;
   text-align: left;
-  /* border: 0.5px solid #F34541; */
+  border: 0.5px solid #D3D3D3;
   width: 100%;
   background: none!important;
   height: 30px;
@@ -1198,4 +1206,9 @@ margin-right: 100px;
 
 .add_container{
   margin-top: -24px;
+}
+
+.return_link{
+  font-weight: bold;
+  color: black;
 }

@@ -4,7 +4,7 @@
     <main class="margin-top-108">
         
             {%if trip_id%}
-            <a href="{{url_for('main.trip_page', uid = uid, trip_id = trip_id)}}">
+            <a class="return_link" href="{{url_for('main.trip_page', uid = uid, trip_id = trip_id)}}">
                 ← Return To {{trip_name}} Dashboard
             </a>
             <div class="centered">
