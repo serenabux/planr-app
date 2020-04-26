@@ -143,13 +143,14 @@ def get_trip_info(uid, trip_id):
     if (tripinfo[5] != None):
         mems = tripinfo[5].split(',')
         for m in mems:
-            q_name = "select first_name, last_name from users where email = '{}'".format(m)
+            q_name = "select first_name, last_name, color from users where email = '{}'".format(m)
             cursor.execute(q_name)
-            first_name,last_name = cursor.fetchone()
+            first_name,last_name,color = cursor.fetchone()
             first_name = first_name.capitalize()
             last_name = last_name.capitalize()
             name = ' '.join([first_name, last_name])
-            members.append(name)
+            d = {"name": name, "color": color}
+            members.append(d)
 
     a_list = []
     if (tripinfo[6] != None):
