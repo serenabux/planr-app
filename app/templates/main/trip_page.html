@@ -21,15 +21,20 @@
             </div>
         </div>
         <h2 class="side_heading">Attractions</h2>
+        {%if trip_info.selected_attractions|length > 0%}
         <div style = "display: flex;">
             <div class="row">
-                {%set i = 0%}
+        {%else%}
+        <div>
+            <div>
+        {%endif%}
+                {%set i = -1%}
                 {%for a in trip_info.selected_attractions%}
                     {%set i = i + 1%}
-                    <div class="padding-24">
-                        <div class="card_link_info">
-                            <a href="{{a.website}}" class="card_link" target="_blank">
-                                <div class="card">
+                    <div class="padding-24" id="{{i}}">
+                        <div class="card margin-left-24">
+                            <div class="card_link_info centered">
+                                <a href="{{a.website}}" class="card_link" target="_blank">
                                     {%if a.photo_link%}
                                     {%set src=a.photo_link[-10:]%}
                                         <img class="attraction_image" src="/images/attraction/{{src}}.jpg" alt="{{a.name}}">
@@ -37,10 +42,20 @@
                                         <img src="{{ url_for('static', filename='images/airplane.png') }}" alt="plane">
                                     {%endif%}
                                     <div class="padding-24">
-                                        <h3 class="centered">{{a.name}}</h3>
+                                        <h3 class="centered attraction_name">{{a.name}}</h3>
                                     </div>
+                                </a>
+                            </div>
+                            <button class='delete_button' id="attraction_{{i}}_{{uid}}_{{trip_id}}">
+                                <div class='icon centered'>
+                                    <i class='fa fa-trash-o'></i>
+                                    <i class='fa fa-question'></i>
+                                    <i class='fa fa-check'></i>
                                 </div>
-                            </a>
+                                <div class='text'>
+                                    <span>Delete</span>
+                                </div>
+                            </button>
                         </div>
                     </div>
                 {%endfor%}

@@ -175,3 +175,14 @@ def add_attraction(uid, trip_id, attraction_name):
     else:
         #Add attraction to the trip return true if sucessful, false if no
         return "true"
+
+@bp.route('/delete_attraction/<uid>/<trip_id>/<attraction_name>/')
+@bp.route('/delete_attraction/', defaults = {'uid': None, 'trip_id': None, 'attraction_name': None})
+def delete_attraction(uid, trip_id, attraction_name):
+    if(uid == None):
+        return redirect(url_for('main.sign_in_page'))
+    elif(trip_id == None or attraction_name == None):
+        return "false"
+    else:
+        #delete the attraction from this trip
+        return "true"
