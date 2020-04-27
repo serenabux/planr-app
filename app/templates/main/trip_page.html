@@ -42,7 +42,7 @@
                                         <img src="{{ url_for('static', filename='images/airplane.png') }}" alt="plane">
                                     {%endif%}
                                     <div class="padding-24">
-                                        <h3 class="centered attraction_name">{{a.name}}</h3>
+                                        <h3 class="centered" id = "attraction_{{loop.index}}">{{a.name}}</h3>
                                     </div>
                                 </a>
                             </div>

@@ -43,7 +43,7 @@ function changeExploreLocation(uid){
                             </button>
                             <div class="add_dropdown_content">`;
                                 for (var t = 0; t < json.trip_list.length ; t++){
-                                    attractions_code += "<button onclick='addAttraction(" + uid + "," + t.trip_id+ ",'" + attractions[i].name + "'," + i + ")'>" + json.trip_list[t].tripname + "</button>";
+                                    attractions_code += `<button onclick = "addAttraction(` + uid + "," + json.trip_list[t].trip_id+ `, '` + attractions[i].name + `',` + (i + 1) + `)">` + json.trip_list[t].tripname + "</button>";
                                 }
                             attractions_code += 
                             `</div>
@@ -52,7 +52,7 @@ function changeExploreLocation(uid){
                         else if (json.trip_list.length == 1){
                         attractions_code += 
                         `<div class="add_container">
-                            <button class='add_button' onclick="addAttraction(` + uid + "," + json.trip_list[0].trip_id + ",'" + attractions[i].name + "'," + i + `)">
+                            <button class='add_button' onclick="addAttraction(` + uid + "," + json.trip_list[0].trip_id + ",'" + attractions[i].name + "'," + (i + 1) + `)">
                                 <div class='icon centered'>
                                     <i class='fa fa-plus'></i>
                                     <i class='fa fa-check'></i>
@@ -98,11 +98,12 @@ function addAttraction(uid, trip_id, attraction_name, attraction_number){
     }).then(function (text) {
         //Change the added button to "Added!"
         if("true"){
-            document.getElementsByClassName("add_button")[(attraction_number)].classList.add("done")
-            document.getElementsByClassName("text")[(attraction_number)].innerHTML = "Added"
+            console.log("true")
+            document.getElementsByClassName("add_button")[(attraction_number - 1)].classList.add("done")
+            document.getElementsByClassName("text")[(attraction_number -1)].innerHTML = "Added"
             setTimeout(() => {
-                document.getElementsByClassName("add_button")[(attraction_number)].classList.remove("done")
-                document.getElementsByClassName("text")[(attraction_number)].innerHTML = "Add To"
+                document.getElementsByClassName("add_button")[(attraction_number - 1)].classList.remove("done")
+                document.getElementsByClassName("text")[(attraction_number - 1)].innerHTML = "Add To"
             }, 3000);
         }
     });

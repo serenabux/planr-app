@@ -54,8 +54,9 @@
                                 </div>
                             </button>
                             <div class="add_dropdown_content">
+                                {%set i=loop.index %}
                                 {%for t in trip_list%}
-                            <button onclick="addAttraction({{uid}},{{t.trip_id}},'{{a.name}}', {{loop.index}});">{{t.tripname}}</button> 
+                            <button onclick="addAttraction({{uid}},{{t.trip_id}},'{{a.name}}', {{i}});">{{t.tripname}}</button> 
                                 {%endfor%}
                             </div>
                         </div>
