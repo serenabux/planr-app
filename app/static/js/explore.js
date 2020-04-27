@@ -19,7 +19,7 @@ function changeExploreLocation(uid){
                         <div class="card_link_info">
                             <a href="`+ attractions[i].website + `" class="card_link" target="_blank">`;
                                 if (attractions[i].photo_link){
-                                    attractions_code += "<img class='attraction_image' src='/images/attraction/"+attractions[i].photo_link.substring(attractions[i].photo_link.length - 10)+".jpg'>"
+                                    attractions_code += "<img class='attraction_image' src='/images/attracts/"+attractions[i].photo_link.substring(attractions[i].photo_link.length - 10)+".jpg'>"
                                 } else{
                                     attractions_code += `<img src="/images/airplane.png" alt="plane">`
                                 }
