@@ -19,6 +19,7 @@ bp = Blueprint('main', __name__)
 def index():
     return render_template('main/index.html',
                            title='Flask-PWA')
+
 @bp.route('/sign_up')
 def sign_up():
     return render_template('main/sign_up.html', title='Sign Up')
@@ -186,3 +187,10 @@ def delete_attraction(uid, trip_id, attraction_name):
     else:
         #delete the attraction from this trip
         return "true"
+
+@bp.route('/credits/<uid>/')
+@bp.route('/credits/', defaults = {'uid': None})
+def credits(uid):
+    if(uid == None):
+        return redirect(url_for('main.sign_in_page'))
+    return render_template('main/credits.html', uid = uid)

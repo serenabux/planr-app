@@ -19,6 +19,7 @@
         <li class="landingHeading_li"><a href="{{url_for('main.explore', uid = uid)}}"class="navLinks">Explore</a></li> 
         <li class="landingHeading_li"><button onclick="toggle_settings_dropdown()" class="dropbtn">&#9881;</button></li>
         <div class="dropdown-content dropdown_content_offset hidden">
+          <a href="{{url_for('main.credits', uid = uid)}}">Credits</a>
           <a href="{{url_for('main.index')}}">Sign Out</a>
           <!-- <button id="btnAdd">Install App</button> -->
         </div>
