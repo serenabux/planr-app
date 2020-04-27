@@ -20,7 +20,7 @@ function deleteAttraction(uid, trip_id, attraction_name, attraction_number){
     }).then(function (text) {
         console.log(text);
         if(text == "true"){
-            $("#"+ attraction_number).remove();
+            $("#"+ (attraction_number)).remove();
         }
         else{
             alert("Something went wrong. Unable to delete your adventure")
@@ -32,7 +32,7 @@ $(".delete_button").click(function(){
 	if($(this).hasClass("confirm")){
         var trip_id = this.id.split("_")
         if(trip_id[0] == "attraction"){
-            attraction_name = document.getElementsByClassName("attraction_name")[parseInt(trip_id[1])].innerHTML;
+            attraction_name = document.getElementsByClassName("attraction_name")[parseInt(trip_id[1] - 1)].innerHTML;
             deleteAttraction(trip_id[2], trip_id[3], attraction_name, trip_id[1])
         }
         else{

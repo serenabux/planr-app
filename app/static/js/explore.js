@@ -98,20 +98,15 @@ function addAttraction(uid, trip_id, attraction_name, attraction_number){
     }).then(function (text) {
         //Change the added button to "Added!"
         if("true"){
-            document.getElementsByClassName("add_button")[attraction_number].classList.add("done")
-            document.getElementsByClassName("text")[attraction_number].innerHTML = "Added"
+            document.getElementsByClassName("add_button")[(attraction_number)].classList.add("done")
+            document.getElementsByClassName("text")[(attraction_number)].innerHTML = "Added"
             setTimeout(() => {
-                document.getElementsByClassName("add_button")[attraction_number].classList.remove("done")
-                document.getElementsByClassName("text")[attraction_number].innerHTML = "Add To"
+                document.getElementsByClassName("add_button")[(attraction_number)].classList.remove("done")
+                document.getElementsByClassName("text")[(attraction_number)].innerHTML = "Add To"
             }, 3000);
         }
     });
 }
 
-function added(attraction_number){
-    document.getElementsByClassName("add_button")[attraction_number].classList.remove("done")
-    document.getElementsByClassName("text")[attraction_number].innerHTML = "Add To"
-    
-}
 
 

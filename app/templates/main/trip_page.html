@@ -31,7 +31,7 @@
                 {%set i = -1%}
                 {%for a in trip_info.selected_attractions%}
                     {%set i = i + 1%}
-                    <div class="padding-24" id="{{i}}">
+                    <div class="padding-24" id="{{loop.index}}">
                         <div class="card margin-left-24">
                             <div class="card_link_info centered">
                                 <a href="{{a.website}}" class="card_link" target="_blank">
@@ -46,7 +46,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <button class='delete_button' id="attraction_{{i}}_{{uid}}_{{trip_id}}">
+                            <button class='delete_button' id="attraction_{{loop.index}}_{{uid}}_{{trip_id}}">
                                 <div class='icon centered'>
                                     <i class='fa fa-trash-o'></i>
                                     <i class='fa fa-question'></i>
