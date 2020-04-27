@@ -215,4 +215,26 @@ def get_attractions(city, country, uid):
     return att_list, trip_list
 
 def addAttraction_trip(uid, trip_id, attraction_name):
-    print(uid, trip_id, attraction_name)
+    q_tripatt = "select selected_attractions from trips where trip_id = {}".format(trip_id)
+    cursor.execute(q_tripatt)
+    att = cursor.fetchone()[0]
+    if(att != None):
+        q_attrnum = "select loc_id from locations where name = '{}'".format(attraction_name)
+        cursor.execute(q_attrnum)
+        num = cursor.fetchone()[0]
+
+        curr_atts = att.split(',')
+        #if not in att
+        if str(num) not in curr_atts:
+            curr_atts.append(str(num))
+            new_atts = ','.join(curr_atts)
+            q_update = "UPDATE trips set selected_attractions = '{}' where trip_id = {}".format(new_atts, trip_id)
+            cursor.execute(q_update)
+            conn.commit()
+    else:
+        q_attrnum = "select loc_id from locations where name = '{}'".format(attraction_name)
+        cursor.execute(q_attrnum)
+        num = cursor.fetchone()[0]
+        q_update = "UPDATE trips set selected_attractions = '{}' where trip_id = {}".format(num, trip_id)
+        cursor.execute(q_update)
+        conn.commit()
