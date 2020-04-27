@@ -214,5 +214,5 @@ def get_attractions(city, country, uid):
 
     return att_list, trip_list
 
-def add_attraction(uid, trip_id, attraction_name):
+def addAttraction_trip(uid, trip_id, attraction_name):
     print(uid, trip_id, attraction_name)
