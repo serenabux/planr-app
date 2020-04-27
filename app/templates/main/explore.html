@@ -25,7 +25,6 @@
             </div>
             {%endif%}
             {%if attractions%}
-            {%set i = 0%}
             <div id="attractions" class="row">
                 {%for a in attractions%}
                 <div class="padding-24">
@@ -56,13 +55,17 @@
                             </button>
                             <div class="add_dropdown_content">
                                 {%for t in trip_list%}
-                            <button onclick="add_attraction({{uid}},{{t.trip_id}},'{{a.name}}', {{i}});">{{t.tripname}}</button> 
+                            <button onclick="addAttraction({{uid}},{{t.trip_id}},'{{a.name}}', {{loop.index}});">{{t.tripname}}</button> 
                                 {%endfor%}
                             </div>
                         </div>
                         {%elif trip_id or trip_list|length == 1%}
                         <div class="add_container">
-                            <button class='add_button' onclick="add_attraction({{uid}},{{trip_list.trip_id}},'{{a.name}}', {{i}})">
+                            {%if trip_id%}
+                            <button class='add_button' onclick="addAttraction({{uid}},{{trip_id}},'{{a.name}}', {{loop.index}})">
+                            {%else%}
+                            <button class='add_button' onclick="addAttraction({{uid}},{{trip_list.trip_id}},'{{a.name}}', {{loop.index}})">
+                            {%endif%}
                                 <div class='icon centered'>
                                     <i class='fa fa-plus'></i>
                                     <i class='fa fa-check'></i>
@@ -90,7 +93,6 @@
                         {%endif%}
                     </div>
                 </div>
-                {%set i = i + 1%}
             {%endfor%}
             </div>
             {%else%}
