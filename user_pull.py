@@ -113,8 +113,6 @@ def get_trip_info(uid, trip_id):
     q_tripinfo = "select user_id, tripname, loc_id, trip_start, trip_end, members, selected_attractions, voting_attractions from trips where trip_id = {}".format(trip_id)
     cursor.execute(q_tripinfo)
     tripinfo = cursor.fetchone()
-    print("Input uid: ",uid)
-    print(tripinfo)
 
     q_location = "select city, country from destinations where dest_id = {}".format(tripinfo[2])
     cursor.execute(q_location)
@@ -215,3 +213,6 @@ def get_attractions(city, country, uid):
         trip_list.append(d)
 
     return att_list, trip_list
+
+def add_attraction(uid, trip_id, attraction_name):
+    print(uid, trip_id, attraction_name)
