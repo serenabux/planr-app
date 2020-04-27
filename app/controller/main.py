@@ -174,7 +174,7 @@ def add_attraction(uid, trip_id, attraction_name):
     elif(trip_id == None or attraction_name == None):
         return "false"
     else:
-        #Add attraction to the trip return true if sucessful, false if no
+        user_pull.addAttraction_trip(uid, trip_id, attraction_name)
         return "true"
 
 @bp.route('/delete_attraction/<uid>/<trip_id>/<attraction_name>/')
