@@ -86,7 +86,7 @@ def delete_trip(uid, trip_id):
     q_get_creatorid = "select user_id from trips where trip_id = {}".format(trip_id)
     cursor.execute(q_get_creatorid)
     creatorid = cursor.fetchone()[0]
-    if (creatorid == uid):
+    if (str(creatorid) == str(uid)):
         q_delete = "delete from trips where trip_id = {}".format(trip_id)
         cursor.execute(q_delete)
         conn.commit()
